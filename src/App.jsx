@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const App = () => {
   const navigate = useNavigate();
   return (
-    <button className="font-semibold p-4 bg-red-800" onClick={() => navigate("home")}>
-      Ir para Home
-    </button>
+    <Button variant="outline" onClick={() => navigate("home")}>Ir para home</Button>
   );
 };
 

@@ -28,7 +28,7 @@ A ideia é transformar o campus em um grande **mapa interativo**, onde a comunid
 1. Clone o repositório:
    ```bash
    git clone https://github.com/seu-usuario/acervo-frontend.git
-````
+   ````
 
 2. Acesse a pasta do projeto:
 

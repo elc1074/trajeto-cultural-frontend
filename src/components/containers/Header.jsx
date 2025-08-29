@@ -9,7 +9,7 @@ export function Header({ section }) {
       <div className="flex items-center gap-2 bg-color px-4 py-2">
         <MapPin className="h-5 w-5 bg-color" color="white" />
         <span className="font-semibold bg-color text-color-white">
-          Trajeto Cultura
+          Trajeto Cultural
         </span>
       </div>
 

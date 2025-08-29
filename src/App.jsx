@@ -1,11 +1,19 @@
-import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
 
-const App = () => {
-  const navigate = useNavigate();
+function App() {
   return (
-    <Button variant="outline" onClick={() => navigate("home")}>Ir para home</Button>
+    <Router>
+      <Routes>
+        {/* Rota inicial: Login */}
+        <Route path="/" element={<Login />} />
+
+        {/* Tela principal */}
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;

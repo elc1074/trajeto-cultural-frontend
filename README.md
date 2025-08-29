@@ -8,7 +8,7 @@ A ideia é transformar o campus em um grande **mapa interativo**, onde a comunid
 ## 🌐 Acessar Online
 
 O projeto já está disponível online via Vercel:  
-[🔗 Trajeto Cultural no Vercel](https://trajeto-cultural-frontend.vercel.app/home)
+[🔗 Trajeto Cultural no Vercel](https://trajeto-cultural-frontend.vercel.app)
 
 ---
 

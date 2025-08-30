@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Home, Zap, MapPin, BookOpen } from 'lucide-react'; 
 
 const Login = () => {
   const navigate = useNavigate();

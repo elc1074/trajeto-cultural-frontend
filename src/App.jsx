@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import PontoArtistico from "./pages/PontoArtistico";
+import EventosDetails from "./pages/EventosDetails";
 
 function App() {
   return (
@@ -11,6 +13,12 @@ function App() {
 
         {/* Tela principal */}
         <Route path="/home" element={<Home />} />
+
+        {/* Rota para página de ponto artístico*/}
+        <Route path="/ponto-artistico" element={<PontoArtistico />} />
+
+        {/* Rota para página de ponto artístico*/}
+        <Route path="/eventos-details" element={<EventosDetails />} />
       </Routes>
     </Router>
   );

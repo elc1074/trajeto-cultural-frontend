@@ -2,7 +2,7 @@ import { MapPin } from "lucide-react";
 
 export function Header({ section }) {
   return (
-    <header className="w-full px-4 pt-4">
+    <header className="w-full pl-2 pt-2">
       {/* Logo + título alinhados à esquerda */}
       <div className="flex items-center gap-2">
         <MapPin className="h-6 w-6 text-white" />
@@ -13,7 +13,7 @@ export function Header({ section }) {
 
       {/* Subtítulo da seção centralizado */}
       {section && (
-        <h1 className="text-white text-center text-xl font-semibold mt-3 mb-6">
+        <h1 className="text-white text-center text-xl font-semibold p-1">
           {section}
         </h1>
       )}

@@ -26,18 +26,25 @@ const HomePage = () => {
       {/* Conteúdo principal (mapa) */}
       <div className="w-full h-[calc(100vh-64px-56px)]">
         <MapContainer
-          center={[-29.6842, -53.8069]}
-          zoom={15}
+          center={[-29.7206, -53.7165]}
+          zoom={16}
           className="w-full h-full"
         >
           <TileLayer
             attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[-29.6842, -53.8069]}>
-            <Popup>
-              🎨 Ponto Cultural <br /> Aqui tem um evento!
-            </Popup>
+
+          {/* Marker do Planetário */}
+          <Marker
+            position={[-29.7206, -53.7165]}
+            eventHandlers={{
+              click: () => {
+                navigate("/ponto-artistico");
+              },
+            }}
+          >
+            <Popup>Planetário da UFSM 🌌</Popup>
           </Marker>
         </MapContainer>
       </div>

@@ -14,7 +14,7 @@ const Login = () => {
         />
       </div>
 
-      <h2 className="text-gray-300 text-xl font-medium mb-6">Login</h2> 
+      <h2 className="text-gray-300 text-xl font-medium mb-6">Acessar sua conta</h2> 
 
       <div className="flex flex-col w-80 gap-4">
        <input

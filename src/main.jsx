@@ -12,7 +12,7 @@ import EventosDetails from "./pages/EventosDetails.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "/",
     element: <Login />,
   },
   {

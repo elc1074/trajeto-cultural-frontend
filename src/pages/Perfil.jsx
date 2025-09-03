@@ -56,7 +56,7 @@ const Perfil = () => {
                 {/* Botão sair */}
                 <Button 
                     className="bg-purple-800 hover:bg-purple-700 text-white w-full max-w-sm py-3 rounded-lg text-base shadow-lg transition-colors duration-300 mt-6"
-                    onClick={() => navigate("/login")}
+                    onClick={() => navigate("/")}
                 >
                     Sair
                 </Button>

@@ -1,9 +1,9 @@
 import {
   Home,
-  BatteryCharging,
+  Star,
   MapPin,
-  BookOpenText,
-  Delete,
+  BookOpen,
+  User,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ export function BottomNav() {
         </button>
 
         <button className="text-white text-2xl p-2 hover:cursor-pointer">
-          <BatteryCharging />
+          <Star />
         </button>
 
         <button
@@ -31,11 +31,11 @@ export function BottomNav() {
         </button>
 
         <button className="text-white text-2xl p-2 hover:cursor-pointer" onClick={() => navigate("/eventos-details")}>
-          <BookOpenText />
+          <BookOpen />
         </button>
 
         <button className="text-white text-2xl p-2 hover:cursor-pointer">
-          <Delete />
+          <User />
         </button>
       </nav>
     </div>

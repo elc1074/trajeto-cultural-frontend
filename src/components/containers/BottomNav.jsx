@@ -34,7 +34,10 @@ export function BottomNav() {
           <BookOpen />
         </button>
 
-        <button className="text-white text-2xl p-2 hover:cursor-pointer">
+        <button 
+          className="text-white text-2xl p-2 hover:cursor-pointer"
+          onClick={() => navigate("/perfil")}
+        >
           <User />
         </button>
       </nav>

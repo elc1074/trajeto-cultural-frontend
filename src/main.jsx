@@ -6,12 +6,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Login from "./pages/Login.jsx";
 import Home from "./pages/Home.jsx";
+import Perfil from "./pages/Perfil.jsx";
 import PontoArtistico from "./pages/PontoArtistico.jsx";
 import EventosDetails from "./pages/EventosDetails.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     element: <Login />,
   },
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/eventos-details",
     element: <EventosDetails />,
+  },
+  {
+    path: "/perfil",
+    element: <Perfil />,
   },
 ]);
 

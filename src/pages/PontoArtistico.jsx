@@ -11,16 +11,18 @@ const PontoArtistico = () => {
       <Header section="Ponto Artístico" />
 
       {/* Conteúdo principal */}
-      <div className="flex-1 flex flex-col items-center mt-12 px-6 overflow-y-auto">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 overflow-y-auto space-y-6">
         <img 
           src={planetario} 
           alt="planetario" 
-          className="mt-12 w-72 max-w-full rounded-xl shadow-lg" 
+          className="w-56 max-w-full rounded-xl shadow-lg" 
         />
 
-        <h2 className="text-white font-semibold text-2xl mt-8">Planetário</h2>
+        <h2 className="text-white font-semibold text-2xl text-center">
+          Planetário
+        </h2>
 
-        <p className="text-white text-justify mt-4 max-w-sm leading-relaxed text-base">
+        <p className="text-white text-center max-w-sm leading-relaxed text-base">
           O Planetário é o local idealizado para que se possa reproduzir o céu
           visando à educação complementar, o enriquecimento da cultura
           científica e intelectual de seus visitantes. A educação através de um
@@ -28,7 +30,7 @@ const PontoArtistico = () => {
           da Astronomia.
         </p>
 
-        <Button className="mt-8 bg-orange-500 text-white py-3 px-8 rounded-lg hover:bg-orange-600 text-lg w-full max-w-sm">
+        <Button className="bg-orange-500 text-white py-3 px-6 rounded-lg hover:bg-orange-600 text-base w-full max-w-xs">
           Adicionar ao trajeto
         </Button>
       </div>

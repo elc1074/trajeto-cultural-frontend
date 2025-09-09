@@ -1,11 +1,41 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useState, useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 const Login = () => {
   const navigate = useNavigate();
 
+  const { login } = useContext(UserContext);
+
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("https://trajeto-cultural-backend.onrender.com/usuario/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, senha, nome: "" }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Credenciais inválidas");
+      }
+
+      const data = await response.json();
+      login(data);
+      navigate("/home");
+    } catch (error) {
+      setErro(error.message);
+    }
+  };
+
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-purple-600 relative"> 
+    <div className="h-screen flex flex-col items-center justify-center bg-purple-600 relative">
       <div className="flex flex-col items-center mb-8">
         <img
           src="/logo.png"
@@ -14,22 +44,27 @@ const Login = () => {
         />
       </div>
 
-      <h2 className="text-gray-300 text-xl font-medium mb-6">Acessar sua conta</h2> 
+      <h2 className="text-gray-300 text-xl font-medium mb-6">Acessar sua conta</h2>
 
       <div className="flex flex-col w-80 gap-4">
        <input
             type="email"
             placeholder="Email"
-            className="p-3 rounded-md bg-gray-200 focus:outline-none placeholder-[#534C4C]" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="p-3 rounded-md bg-gray-200 focus:outline-none placeholder-[#534C4C]"
         />
         <input
             type="password"
             placeholder="Senha"
-            className="p-3 rounded-md bg-gray-200 focus:outline-none placeholder-[#534C4C]" 
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            className="p-3 rounded-md bg-gray-200 focus:outline-none placeholder-[#534C4C]"
         />
+
         <Button
-          className="mt-2 bg-orange-500 text-white py-3 rounded-md hover:bg-orange-600 text-lg" 
-          onClick={() => navigate("/home")}
+          className="mt-2 bg-orange-500 text-white py-3 rounded-md hover:bg-orange-600 text-lg"
+          onClick={handleLogin}
         >
           Login
         </Button>

@@ -10,6 +10,9 @@ import Perfil from "./pages/Perfil.jsx";
 import PontoArtistico from "./pages/PontoArtistico.jsx";
 import EventosDetails from "./pages/EventosDetails.jsx";
 
+import { UserProvider } from "./context/UserContext";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +38,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </StrictMode>
 );

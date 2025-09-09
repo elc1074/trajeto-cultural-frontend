@@ -2,9 +2,52 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/containers/Header";
 import { BottomNav } from "@/components/containers/BottomNav";
 import { Button } from "@/components/ui/button.jsx";
+import { useContext, useEffect, useRef } from "react";
+
+import { UserContext } from "../context/UserContext";
 
 const Perfil = () => {
     const navigate = useNavigate();
+
+    const { user, logout, setUser } = useContext(UserContext);
+
+    const fileInputRef = useRef(null);
+
+    const handleAvatarClick = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleAvatarChange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append("file", file);
+        if (user?.nome) formData.append("nome", user.nome);
+        if (user?.email) formData.append("email", user.email);
+
+        const response = await fetch(
+            `https://trajeto-cultural-backend.onrender.com/usuario/update/${user.user_id}`,
+            {
+                method: "PUT",
+                body: formData,
+            }
+        );
+
+        const data = await response.json();
+        if (data.avatar_url) {
+            const updatedUser = { ...user, avatar_url: data.avatar_url };
+            localStorage.setItem("user", JSON.stringify(updatedUser));
+            setUser(updatedUser);
+        }
+    };
+
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/");
+        }
+    }, [user, navigate]);
 
     return (
         <div className="h-screen flex flex-col bg-purple-600 relative">
@@ -16,15 +59,23 @@ const Perfil = () => {
                 {/* Avatar */}
                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
                     <img
-                        src="https://placehold.co/128x128/D8BFD8/000000?text=Avatar"
+                        src={user?.avatar_url || "https://placehold.co/128x128/D8BFD8/000000?text=Avatar"}
                         alt="Avatar do Usuário"
                         className="w-full h-full object-cover"
+                        onClick={handleAvatarClick}
+                    />
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        style={{ display: "none" }}
+                        accept="image/*"
+                        onChange={handleAvatarChange}
                     />
                 </div>
 
                 {/* Nome e descrição */}
                 <div className="space-y-1">
-                    <h3 className="text-white font-semibold text-xl">Vitória</h3>
+                    <h3 className="text-white font-semibold text-xl">{user?.nome || "Usuário"}</h3>
                     <p className="text-purple-200 text-sm">
                         Graduanda em Sistemas de Informação
                     </p>
@@ -56,7 +107,7 @@ const Perfil = () => {
                 {/* Botão sair */}
                 <Button 
                     className="bg-purple-800 hover:bg-purple-700 text-white w-full max-w-sm py-3 rounded-lg text-base shadow-lg transition-colors duration-300 mt-6"
-                    onClick={() => navigate("/")}
+                    onClick={logout}
                 >
                     Sair
                 </Button>

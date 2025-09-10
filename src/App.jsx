@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Perfil from "./pages/Perfil";
 import PontoArtistico from "./pages/PontoArtistico";
@@ -11,6 +12,9 @@ function App() {
       <Routes>
         {/* Rota inicial: Login */}
         <Route path="/" element={<Login />} />
+
+        {/* Rota de registro */}
+        <Route path="/register" element={<Register />} />
 
         {/* Tela principal */}
         <Route path="/home" element={<Home />} />

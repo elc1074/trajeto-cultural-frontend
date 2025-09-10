@@ -82,6 +82,18 @@ const Login = () => {
         {erro && (
           <p className="text-red-300 text-sm text-center mt-2">{erro}</p>
         )}
+
+        {/* Texto e botão de cadastro */}
+        <div className="flex flex-col items-center mt-4">
+          <p className="text-gray-200 text-sm">Não tem uma conta?</p>
+          <Button
+            variant="outline"
+            className="mt-2 border-white text-white hover:bg-white hover:text-purple-600"
+            onClick={() => navigate("/register")}
+          >
+            Cadastre-se
+          </Button>
+        </div>
       </div>
     </div>
   );

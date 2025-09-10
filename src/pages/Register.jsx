@@ -20,7 +20,7 @@ const Register = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("https://trajeto-cultural-backend.onrender.com/usuario/registro", {
+      const response = await fetch("https://trajeto-cultural-backend.onrender.com/usuario/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const Register = () => {
       }
 
       await response.json();
-      navigate("/"); // volta para login após cadastro
+      navigate("/");
     } catch (error) {
       setErro(error.message);
     } finally {

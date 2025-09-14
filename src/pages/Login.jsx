@@ -38,61 +38,54 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-purple-600 relative">
-      <div className="flex flex-col items-center mb-8">
-        <img
-          src="/logo.png"
-          alt="Trajeto Cultural"
-          className="w-80 h-80 text-white"
-        />
+    <div className="h-screen flex flex-col bg-gray-100">
+      <div className="bg-purple-600 h-1/3 flex flex-col items-center justify-center text-white">
+        <h1 className="text-3xl font-bold">Olá !</h1>
+        <p className="mt-2 text-sm">Bem-vindo ao Trajeto Cultural</p>
       </div>
 
-      <h2 className="text-gray-300 text-xl font-medium mb-6">
-        Acessar sua conta
-      </h2>
+      <div className="flex-1 flex flex-col items-center justify-start -mt-12">
+        <div className="bg-white rounded-3xl shadow-md w-80 p-6 flex flex-col items-center">
+          <h2 className="text-purple-600 text-lg font-semibold mb-6">Login</h2>
 
-      <div className="flex flex-col w-80 gap-4">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="p-3 rounded-md bg-gray-200 text-gray-700 focus:outline-none placeholder-[#534C4C]"
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          className="p-3 rounded-md bg-gray-200 text-gray-700 focus:outline-none placeholder-[#534C4C]"
-        />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 rounded-full bg-gray-100 text-gray-700 focus:outline-none placeholder-gray-500 mb-3"
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            className="w-full p-3 rounded-full bg-gray-100 text-gray-700 focus:outline-none placeholder-gray-500 mb-4"
+          />
 
-        <Button
-          className="mt-2 bg-orange-500 text-white py-3 rounded-md hover:bg-orange-600 text-lg flex justify-center items-center"
-          onClick={handleLogin}
-          disabled={loading}
-        >
-          {loading ? (
-            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-          ) : (
-            "Login"
-          )}
-        </Button>
-
-        {erro && (
-          <p className="text-red-300 text-sm text-center mt-2">{erro}</p>
-        )}
-
-        {/* Texto e botão de cadastro */}
-        <div className="flex flex-col items-center mt-4">
-          <p className="text-gray-200 text-sm">Não tem uma conta?</p>
           <Button
-            variant="outline"
-            className="mt-2 border-white text-white hover:bg-white hover:text-purple-600"
-            onClick={() => navigate("/register")}
+            className="w-full bg-purple-600 text-white py-3 rounded-full hover:bg-purple-700 text-base flex justify-center items-center"
+            onClick={handleLogin}
+            disabled={loading}
           >
-            Cadastre-se
+            {loading ? (
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+              "Entrar"
+            )}
           </Button>
+
+          {erro && <p className="text-red-500 text-sm text-center mt-2">{erro}</p>}
+
+          <p className="text-sm text-gray-600 mt-6">
+            Não tem uma conta?{" "}
+            <span
+              onClick={() => navigate("/register")}
+              className="text-purple-600 font-semibold cursor-pointer"
+            >
+              Cadastre-se
+            </span>
+          </p>
         </div>
       </div>
     </div>

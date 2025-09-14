@@ -20,22 +20,17 @@ const HomePage = () => {
 
   return (
     <div className="h-screen flex flex-col bg-purple-600 relative">
-      {/* Header fixo */}
-      <Header section="Localização" />
+      <Header section="Home " />
 
-      {/* Conteúdo principal (mapa) */}
-      <div className="w-full h-[calc(100vh-64px-56px)]">
+      {/* Wrapper com bordas arredondadas */}
+      <div className="w-full h-full rounded-t-2xl overflow-hidden bg-white">
         <MapContainer
           center={[-29.7206, -53.7165]}
-          zoom={16}
+          zoom={15}
           className="w-full h-full"
         >
-          <TileLayer
-            attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+          <TileLayer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" />
 
-          {/* Marker do Planetário */}
           <Marker
             position={[-29.7206, -53.7165]}
             eventHandlers={{
@@ -46,10 +41,17 @@ const HomePage = () => {
           >
             <Popup>Planetário da UFSM 🌌</Popup>
           </Marker>
+
+          <Marker position={[-29.718, -53.715]}>
+            <Popup>Outro Ponto Cultural 🎭</Popup>
+          </Marker>
+
+          <Marker position={[-29.722, -53.717]}>
+            <Popup>Museu 📚</Popup>
+          </Marker>
         </MapContainer>
       </div>
 
-      {/* BottomNav fixo */}
       <BottomNav />
     </div>
   );

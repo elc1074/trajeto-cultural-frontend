@@ -19,7 +19,10 @@ export function BottomNav() {
           <Home />
         </button>
 
-        <button className="text-white text-2xl hover:opacity-80">
+        <button 
+          className="text-white text-2xl hover:opacity-80"
+          onClick={() => navigate("/conquistas")}
+        >
           <Star />
         </button>
 

@@ -3,7 +3,7 @@ import { BottomNav } from "@/components/containers/BottomNav";
 import { Star } from "lucide-react";
 
 const achievements = [
-  { title: "Primaria visita", date: "xx/xx/xxxx" },
+  { title: "Primeira visita", date: "xx/xx/xxxx" },
   { title: "Explorador de esculturas", date: "xx/xx/xxxx" },
   { title: "10 obras descobertas", date: "xx/xx/xxxx" },
   { title: "Explorador Ouro", date: "xx/xx/xxxx" },

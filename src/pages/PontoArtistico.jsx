@@ -15,8 +15,7 @@ const PontoArtistico = () => {
         setObra(data);
         setLoading(false);
       })
-      .catch(err => {
-        console.error("Erro ao carregar obra:", err);
+      .catch(() => {
         setLoading(false);
       });
   }, [obraId]);
@@ -37,37 +36,30 @@ const PontoArtistico = () => {
     );
   }
 
-  // Pega a imagem medium ou fallback
   const imageUrl = obra?.thumbnail?.medium?.[0] || "https://via.placeholder.com/300";
 
   return (
     <div className="h-screen flex flex-col bg-purple-600 relative">
       <Header section="Ponto Artístico" />
-
-      <div className="flex-1 flex flex-col items-center justify-center px-6 overflow-y-auto space-y-6">
+      <div className="flex-1 bg-gray-100 rounded-t-3xl flex flex-col items-center px-6 py-6 overflow-y-auto">
         <img
           src={imageUrl}
           alt={obra.title}
-          className="w-56 max-w-full rounded-xl shadow-lg"
+          className="w-64 max-w-full rounded-md shadow-lg mb-6"
         />
-
-        <h2 className="text-white font-semibold text-2xl text-center">
+        <h2 className="text-orange-500 font-bold text-xl text-center">
           {obra.title}
         </h2>
-
-        <p className="text-white text-center max-w-sm leading-relaxed text-base">
-          {obra.description}
+        <p className="text-purple-600 text-center text-sm mt-1">
+          Localização Acervo CAL
         </p>
-
-        <p className="text-white text-center max-w-sm leading-relaxed text-sm italic">
-          Autor: {obra.author_name}
+        <p className="text-purple-600 text-center text-sm mb-6">
+          {obra.author_name}
         </p>
-
-        <Button className="bg-orange-500 text-white py-3 px-6 rounded-lg hover:bg-orange-600 text-base w-full max-w-xs">
-          Adicionar ao trajeto
+        <Button className="bg-orange-500 text-white py-3 px-6 rounded-full hover:bg-orange-600 text-base w-full max-w-xs">
+          Adicionar ao Trajeto
         </Button>
       </div>
-
       <BottomNav />
     </div>
   );

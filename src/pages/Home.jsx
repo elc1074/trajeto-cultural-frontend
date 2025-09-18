@@ -4,6 +4,9 @@ import { BottomNav } from "@/components/containers/BottomNav";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { useState, useEffect } from "react";
+
+
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -17,6 +20,25 @@ L.Icon.Default.mergeOptions({
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [obras, setObras] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+   useEffect(() => {
+      setLoading(true);
+      fetch("https://trajeto-cultural-backend.onrender.com/acervo/get_lista")
+        .then((res) => res.json())
+        .then((data) => {
+          setObras(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Erro ao carregar obras:", err);
+          setLoading(false);
+        });
+    }, []);
+
+
 
   return (
     <div className="h-screen flex flex-col bg-purple-600 relative">
@@ -24,6 +46,7 @@ const HomePage = () => {
 
       {/* Wrapper com bordas arredondadas */}
       <div className="w-full h-full rounded-t-2xl overflow-hidden bg-white">
+
         <MapContainer
           center={[-29.7206, -53.7165]}
           zoom={15}
@@ -31,24 +54,25 @@ const HomePage = () => {
         >
           <TileLayer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" />
 
-          <Marker
-            position={[-29.7206, -53.7165]}
-            eventHandlers={{
-              click: () => {
-                navigate("/ponto-artistico");
-              },
-            }}
-          >
-            <Popup>Planetário da UFSM 🌌</Popup>
-          </Marker>
+        {!loading &&
+          obras
+            .filter((obra) => obra.latitude && obra.longitude)
+            .map((obra) => (
+              <Marker
+                key={obra.id}
+                position={[parseFloat(obra.latitude), parseFloat(obra.longitude)]}
+                eventHandlers={{
+                  click: () => {
+                    navigate(`/ponto-artistico?id=${obra.id}`);
+                  },
+                }}
+              >
+                <Popup>{obra.title}</Popup>
+              </Marker>
+            ))}
 
-          <Marker position={[-29.718, -53.715]}>
-            <Popup>Outro Ponto Cultural 🎭</Popup>
-          </Marker>
 
-          <Marker position={[-29.722, -53.717]}>
-            <Popup>Museu 📚</Popup>
-          </Marker>
+
         </MapContainer>
       </div>
 

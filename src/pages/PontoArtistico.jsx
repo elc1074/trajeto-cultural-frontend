@@ -2,23 +2,34 @@ import { useState, useEffect } from "react";
 import { Header } from "@/components/containers/Header";
 import { BottomNav } from "@/components/containers/BottomNav";
 import { Button } from "@/components/ui/button.jsx";
+import { useLocation } from "react-router-dom";
+
 
 const PontoArtistico = () => {
   const [obra, setObra] = useState(null);
   const [loading, setLoading] = useState(true);
-  const obraId = 27187;
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const obraId = params.get("id");
 
-  useEffect(() => {
-    fetch(`https://trajeto-cultural-backend.onrender.com/acervo/get_obra/${obraId}`)
-      .then(res => res.json())
-      .then(data => {
-        setObra(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [obraId]);
+
+
+
+    useEffect(() => {
+      if (obraId) {
+        fetch(`https://trajeto-cultural-backend.onrender.com/acervo/get_obra/${obraId}`)
+          .then(res => res.json())
+          .then(data => {
+            setObra(data);
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.error("Erro ao carregar obra:", err);
+            setLoading(false);
+          });
+      }
+    }, [obraId]);
+
 
   if (loading) {
     return (
@@ -51,7 +62,7 @@ const PontoArtistico = () => {
           {obra.title}
         </h2>
         <p className="text-purple-600 text-center text-sm mt-1">
-          Localização Acervo CAL
+          {obra.localizacao || "Localização não informada"}
         </p>
         <p className="text-purple-600 text-center text-sm mb-6">
           {obra.author_name}

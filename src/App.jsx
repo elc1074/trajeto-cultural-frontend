@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Start from "./pages/Start";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -11,8 +12,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Rota inicial: Login */}
-        <Route path="/" element={<Login />} />
+        {/* Rota inicial: Start */}
+        <Route path="/" element={<Start />} />
+
+        {/* Rota de Login */}
+        <Route path="/login" element={<Login />} />
 
         {/* Rota de registro */}
         <Route path="/register" element={<Register />} />
@@ -29,7 +33,6 @@ function App() {
         <Route path="/eventos-details" element={<EventosDetails />} />
 
         <Route path="/perfil" element={<Perfil />} />
-        
       </Routes>
     </Router>
   );

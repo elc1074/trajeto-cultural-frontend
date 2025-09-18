@@ -4,6 +4,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import Start from "./pages/Start.jsx"
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Home from "./pages/Home.jsx";
@@ -18,6 +19,10 @@ import { UserProvider } from "./context/UserContext";
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Start />,
+  },
+  {
+    path: "/login",
     element: <Login />,
   },
   {
@@ -30,7 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/conquistas",
-    element: <ConquistasPage />
+    element: <ConquistasPage />,
   },
   {
     path: "/ponto-artistico",

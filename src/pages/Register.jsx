@@ -51,7 +51,7 @@ const Register = () => {
       <div className="bg-gray-100 rounded-3xl shadow-lg p-8 w-full h-full mt-32">
         <button
           className="text-purple-600 text-sm mb-4 flex items-center"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/login")}
         >
           ← Voltar para login
         </button>

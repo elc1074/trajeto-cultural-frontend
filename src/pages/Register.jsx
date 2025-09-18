@@ -42,8 +42,13 @@ const Register = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-purple-600 relative">
-      <div className="bg-gray-100 rounded-3xl shadow-lg p-8 w-80">
+    <div className="h-screen relative flex flex-col items-center justify-center bg-purple-600 relative">
+      <img
+        className="w-[150px] absolute -top-8 -left-6"
+        src="/login-header.png"
+        alt="ink"
+      />
+      <div className="bg-gray-100 rounded-3xl shadow-lg p-8 w-full h-full mt-32">
         <button
           className="text-purple-600 text-sm mb-4 flex items-center"
           onClick={() => navigate("/")}

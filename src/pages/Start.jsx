@@ -5,36 +5,42 @@ const Start = () => {
   const navigate = useNavigate();
   return (
     <div className="overflow-hidden">
-      <div className="h-screen relative bg-neutral-100 flex flex-col items-center justify-center">
+      <div className="relative flex h-screen flex-col items-center justify-center bg-neutral-100">
         <img
-          className="absolute  w-[250px] -top-16 -right-14"
+          className="absolute -right-14 -top-16 w-[250px]"
           src="/start-1.png"
           alt="map"
         />
         <img
-          className="absolute  w-[250px] top-20 -left-16"
+          className="absolute -left-16 top-20 w-[250px]"
           src="/start-2.png"
           alt="map"
         />
         <img
-          className="absolute  w-[150px] top-1/2 -right-10"
+          className="absolute -right-10 top-1/2 w-[150px]"
           src="/start-3.png"
           alt="map"
         />
         <img
-          className="absolute  w-[250px] bottom-4 -left-16"
+          className="absolute -left-16 bottom-4 w-[250px]"
           src="/start-4.png"
           alt="map"
         />
-        <img className="w-[200px] z-10" src="/favicon.png" alt="favicon" />
-        <p className="text-purple-400 text-2xl z-10">Bem-vindo ao</p>
-        <h1 className="text-purple-600 text-3xl font-bold z-10 pb-8">
+        <img className="z-10 w-[200px]" src="/favicon.png" alt="favicon" />
+        <p className="z-10 text-2xl text-purple-400">Bem-vindo ao</p>
+        <h1 className="z-10 pb-8 text-3xl font-bold text-purple-600">
           Trajeto Cultural
         </h1>
-        <Button className="bg-orange-500 text-white py-3 rounded-full w-[200px] z-10 hover:bg-orange-400 text-lg flex justify-center items-center" onClick= {() => navigate("/register")}>
+        <Button
+          className="z-10 flex w-[200px] items-center justify-center rounded-full bg-orange-500 py-3 text-lg text-white hover:bg-orange-400"
+          onClick={() => navigate("/register")}
+        >
           Cadastre - se
         </Button>
-        <Button className="mt-4 bg-white text-gray-700 py-3 rounded-full w-[200px] z-10 hover:bg-purple-200 hover:text-white text-lg flex justify-center items-center" onClick={() => navigate("/login")}>
+        <Button
+          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-white py-3 text-lg text-gray-700 hover:bg-purple-200 hover:text-white"
+          onClick={() => navigate("/login")}
+        >
           Login
         </Button>
       </div>

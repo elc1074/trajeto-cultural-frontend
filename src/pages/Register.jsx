@@ -20,13 +20,16 @@ const Register = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("https://trajeto-cultural-backend.onrender.com/usuario/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://trajeto-cultural-backend.onrender.com/usuario/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ nome, email, senha }),
         },
-        body: JSON.stringify({ nome, email, senha }),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Erro ao registrar usuário");
@@ -42,21 +45,21 @@ const Register = () => {
   };
 
   return (
-    <div className="h-screen relative flex flex-col items-center justify-center bg-purple-600 relative">
+    <div className="relative flex h-screen flex-col items-center justify-center bg-purple-600">
       <img
-        className="w-[150px] absolute -top-8 -left-6"
+        className="absolute -left-6 -top-8 w-[150px]"
         src="/login-header.png"
         alt="ink"
       />
-      <div className="bg-gray-100 rounded-3xl shadow-lg p-8 w-full h-full mt-32">
+      <div className="mt-32 h-full w-full rounded-3xl bg-gray-100 p-8 shadow-lg">
         <button
-          className="text-purple-600 text-sm mb-4 flex items-center"
+          className="mb-4 flex items-center text-sm text-purple-600"
           onClick={() => navigate("/login")}
         >
           ← Voltar para login
         </button>
 
-        <h2 className="text-purple-600 text-2xl font-bold mb-6 text-center">
+        <h2 className="mb-6 text-center text-2xl font-bold text-purple-600">
           Cadastre-se
         </h2>
 
@@ -66,44 +69,44 @@ const Register = () => {
             placeholder="Nome"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
-            className="p-3 rounded-full bg-white border border-gray-300 focus:outline-none text-purple-600 placeholder-purple-400"
+            className="rounded-full border border-gray-300 bg-white p-3 text-purple-600 placeholder-purple-400 focus:outline-none"
           />
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="p-3 rounded-full bg-white border border-gray-300 focus:outline-none text-purple-600 placeholder-purple-400"
+            className="rounded-full border border-gray-300 bg-white p-3 text-purple-600 placeholder-purple-400 focus:outline-none"
           />
           <input
             type="password"
             placeholder="Senha"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
-            className="p-3 rounded-full bg-white border border-gray-300 focus:outline-none text-purple-600 placeholder-purple-400"
+            className="rounded-full border border-gray-300 bg-white p-3 text-purple-600 placeholder-purple-400 focus:outline-none"
           />
           <input
             type="password"
             placeholder="Confirmar senha"
             value={confirmarSenha}
             onChange={(e) => setConfirmarSenha(e.target.value)}
-            className="p-3 rounded-full bg-white border border-gray-300 focus:outline-none text-purple-600 placeholder-purple-400"
+            className="rounded-full border border-gray-300 bg-white p-3 text-purple-600 placeholder-purple-400 focus:outline-none"
           />
 
           <Button
-            className="mt-2 bg-purple-500 text-white py-3 rounded-full hover:bg-purple-600 text-lg flex justify-center items-center"
+            className="mt-2 flex items-center justify-center rounded-full bg-purple-500 py-3 text-lg text-white hover:bg-purple-600"
             onClick={handleRegister}
             disabled={loading}
           >
             {loading ? (
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
             ) : (
               "Cadastre-se"
             )}
           </Button>
 
           {erro && (
-            <p className="text-red-500 text-sm text-center mt-2">{erro}</p>
+            <p className="mt-2 text-center text-sm text-red-500">{erro}</p>
           )}
         </div>
       </div>

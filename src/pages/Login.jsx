@@ -39,14 +39,26 @@ const Login = () => {
 
   return (
     <div className="h-screen flex flex-col bg-gray-100">
-      <div className="bg-purple-600 h-1/3 flex flex-col items-center justify-center text-white">
-        <h1 className="text-3xl font-bold">Olá !</h1>
-        <p className="mt-2 text-sm">Bem-vindo ao Trajeto Cultural</p>
+      <div className="bg-purple-600 relative h-1/3 flex flex-col items-start pl-6 justify-center text-white">
+        <img
+          className="w-[130px] absolute -top-8 -left-6"
+          src="/login-header.png"
+          alt="ink"
+        />
+        <h1 className="text-4xl font-bold">Olá !</h1>
+        <p className="mt-2 text-md">Bem-vindo ao Trajeto Cultural</p>
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-start -mt-12">
-        <div className="bg-white rounded-3xl shadow-md w-80 p-6 flex flex-col items-center">
-          <h2 className="text-purple-600 text-lg font-semibold mb-6">Login</h2>
+      <div className="flex-1 z-10 flex flex-col items-center justify-start -mt-12">
+        <div className="bg-white relative rounded-3xl shadow-md w-full h-full p-6 flex flex-col items-center">
+          <h2 className="text-purple-600 text-2xl font-semibold mb-6 self-start">
+            Login
+          </h2>
+          <img
+            className="w-[140px] absolute -top-20 right-6"
+            src="/login-pin.png"
+            alt=""
+          />
 
           <input
             type="email"
@@ -75,7 +87,9 @@ const Login = () => {
             )}
           </Button>
 
-          {erro && <p className="text-red-500 text-sm text-center mt-2">{erro}</p>}
+          {erro && (
+            <p className="text-red-500 text-sm text-center mt-2">{erro}</p>
+          )}
 
           <p className="text-sm text-gray-600 mt-6">
             Não tem uma conta?{" "}

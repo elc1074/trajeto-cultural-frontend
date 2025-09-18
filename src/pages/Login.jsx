@@ -41,7 +41,7 @@ const Login = () => {
     <div className="h-screen flex flex-col bg-gray-100">
       <div className="bg-purple-600 relative h-1/3 flex flex-col items-start pl-6 justify-center text-white">
         <img
-          className="w-[130px] absolute -top-8 -left-6"
+          className="w-[90px] absolute -top-4 -left-6"
           src="/login-header.png"
           alt="ink"
         />

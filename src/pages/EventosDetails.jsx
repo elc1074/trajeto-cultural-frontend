@@ -54,9 +54,9 @@ const EventosDetails = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-purple-600 relative">
-      <Header />
-      <div className="flex-1 bg-white rounded-t-3xl flex flex-col items-center px-6 py-6 overflow-y-auto mt-4 z-10">
+    <div className="min-h-screen flex flex-col bg-purple-500 relative">
+      <Header section="Eventos"/>
+      <div className="flex-1 bg-white rounded-t-3xl flex flex-col items-center px-6 py-6 overflow-y-auto z-10">
         <div className="w-full max-w-xl flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold text-gray-800">Eventos</h2>
           <div className="flex items-center">

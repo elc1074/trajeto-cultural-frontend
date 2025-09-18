@@ -42,7 +42,7 @@ const HomePage = () => {
 
   return (
     <div className="h-screen flex flex-col bg-purple-600 relative">
-      <Header section="Home " />
+      <Header section="Trajeto Cultural " />
 
       {/* Wrapper com bordas arredondadas */}
       <div className="w-full h-full rounded-t-2xl overflow-hidden bg-white">

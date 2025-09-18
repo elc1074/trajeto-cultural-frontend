@@ -14,10 +14,10 @@ const achievements = [
 
 const ConquistasPage = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-purple-600 relative">
+    <div className="min-h-screen flex flex-col bg-purple-500 relative">
       <Header section="Conquistas" />
 
-      <div className="flex-1 bg-white rounded-t-3xl p-6 overflow-y-auto mt-4">
+      <div className="flex-1 bg-white rounded-t-3xl p-6 overflow-y-auto">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">Conquistas</h1>
         
         <ul className="space-y-6">

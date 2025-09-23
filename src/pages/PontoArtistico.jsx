@@ -3,6 +3,9 @@ import { Header } from "@/components/containers/Header";
 import { BottomNav } from "@/components/containers/BottomNav";
 import { Button } from "@/components/ui/button.jsx";
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+
 
 const PontoArtistico = () => {
   const [obra, setObra] = useState(null);
@@ -10,6 +13,8 @@ const PontoArtistico = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const obraId = params.get("id");
+  const { user } = useContext(UserContext);
+
 
   useEffect(() => {
     if (obraId) {
@@ -47,6 +52,36 @@ const PontoArtistico = () => {
   const imageUrl =
     obra?.thumbnail?.medium?.[0] || "https://via.placeholder.com/300";
 
+  const handleAddObraVisitada = async () => {
+      if (!user) {
+        alert("Você precisa estar logado para registrar a obra.");
+        return;
+      }
+
+      try {
+        const response = await fetch("https://trajeto-cultural-backend.onrender.com/obravisitada/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id_obra: obra.id,
+            id_usuario: user.user_id,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Erro ao registrar obra visitada");
+        }
+
+        alert("Obra adicionada ao trajeto com sucesso!");
+      } catch (err) {
+        console.error(err);
+        alert("Erro ao adicionar obra.");
+      }
+    };
+
+
   return (
     <div className="relative flex h-screen flex-col bg-purple-600">
       <Header section="Ponto Artístico" />
@@ -65,9 +100,13 @@ const PontoArtistico = () => {
         <p className="mb-6 text-center text-sm text-purple-600">
           {obra.author_name}
         </p>
-        <Button className="w-full max-w-xs rounded-full bg-orange-500 px-6 py-3 text-base text-white hover:bg-orange-600">
+        <Button
+          className="bg-orange-500 text-white py-3 px-6 rounded-full hover:bg-orange-600 text-base w-full max-w-xs"
+          onClick={handleAddObraVisitada}
+        >
           Adicionar ao Trajeto
         </Button>
+
       </div>
       <BottomNav />
     </div>

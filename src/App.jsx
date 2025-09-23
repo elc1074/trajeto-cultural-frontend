@@ -1,41 +1,68 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Start from "./pages/Start";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Home from "./pages/Home";
-import ConquistasPage from "./pages/ConquistasPage";
-import Perfil from "./pages/Perfil";
-import PontoArtistico from "./pages/PontoArtistico";
-import EventosDetails from "./pages/EventosDetails";
+import "./App.css";
 
-function App() {
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Start from "./pages/Start.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Home from "./pages/Home.jsx";
+import ConquistasPage from "./pages/ConquistasPage.jsx";
+import Perfil from "./pages/Perfil.jsx";
+import PontoArtistico from "./pages/PontoArtistico.jsx";
+import EventosDetails from "./pages/EventosDetails.jsx";
+
+import { UserProvider } from "./context/UserContext.jsx";
+import { useClarity } from "./hooks/useClarity.js";
+
+const AppContent = () => {
+  useClarity();
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Start />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/home",
+      element: <Home />,
+    },
+    {
+      path: "/conquistas",
+      element: <ConquistasPage />,
+    },
+    {
+      path: "/ponto-artistico",
+      element: <PontoArtistico />,
+    },
+    {
+      path: "/eventos-details",
+      element: <EventosDetails />,
+    },
+    {
+      path: "/perfil",
+      element: <Perfil />,
+    },
+  ]);
+
   return (
-    <Router>
-      <Routes>
-        {/* Rota inicial: Start */}
-        <Route path="/" element={<Start />} />
-
-        {/* Rota de Login */}
-        <Route path="/login" element={<Login />} />
-
-        {/* Rota de registro */}
-        <Route path="/register" element={<Register />} />
-
-        {/* Tela principal */}
-        <Route path="/home" element={<Home />} />
-
-        <Route path="/conquistas" element={<ConquistasPage />} />
-
-        {/* Rota para página de ponto artístico*/}
-        <Route path="/ponto-artistico" element={<PontoArtistico />} />
-
-        {/* Rota para página de ponto artístico*/}
-        <Route path="/eventos-details" element={<EventosDetails />} />
-
-        <Route path="/perfil" element={<Perfil />} />
-      </Routes>
-    </Router>
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   );
-}
+};
 
-export default App;
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <AppContent />
+  </StrictMode>,
+);

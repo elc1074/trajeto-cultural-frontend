@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 /* Imports adicionais */
-@import "tw-animate-css";
-@import "leaflet/dist/leaflet.css";
+/*@import "tw-animate-css";
+@import "leaflet/dist/leaflet.css";*/
 
 /* Reset básico */
 * {
@@ -15,7 +15,7 @@
 
 /* Estilo base do body */
 body {
-  background: linear-gradient(to bottom, #a855f7, #7e22ce);
+  background: linear-gradient(to bottom, #7e22ce, #a855f7);
   color: white;
   font-family: sans-serif;
 }

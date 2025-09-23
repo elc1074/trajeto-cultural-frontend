@@ -4,7 +4,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Start from "./pages/Start.jsx"
+import Start from "./pages/Start.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Home from "./pages/Home.jsx";
@@ -14,7 +14,6 @@ import PontoArtistico from "./pages/PontoArtistico.jsx";
 import EventosDetails from "./pages/EventosDetails.jsx";
 
 import { UserProvider } from "./context/UserContext";
-
 
 const router = createBrowserRouter([
   {
@@ -56,5 +55,5 @@ createRoot(document.getElementById("root")).render(
     <UserProvider>
       <RouterProvider router={router} />
     </UserProvider>
-  </StrictMode>
+  </StrictMode>,
 );

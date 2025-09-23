@@ -26,16 +26,16 @@ body {
   --color-background: #ffffff;
   --color-foreground: #0f0f0f;
   --color-border: #e5e7eb; /* gray-200 */
-  --color-input: #f3f4f6;  /* gray-100 */
-  --color-ring: #6366f1;   /* indigo-500 */
+  --color-input: #f3f4f6; /* gray-100 */
+  --color-ring: #6366f1; /* indigo-500 */
 }
 
 .dark {
   --color-background: #0f0f0f;
   --color-foreground: #f9fafb;
   --color-border: #1f2937; /* gray-800 */
-  --color-input: #374151;  /* gray-700 */
-  --color-ring: #3b82f6;   /* blue-500 */
+  --color-input: #374151; /* gray-700 */
+  --color-ring: #3b82f6; /* blue-500 */
 }
 
 /* Base layer para integrar variáveis ao Tailwind v3 */

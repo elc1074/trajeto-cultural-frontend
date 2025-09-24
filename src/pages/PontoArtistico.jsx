@@ -107,30 +107,34 @@ const PontoArtistico = () => {
             obraLat,
             obraLon
           );
+          console.log("📏 Distância mockada até a obra:", dist, "m");
           setDistance(dist);
           setCanAdd(dist <= 10);
-
-          console.log("📏 Distância mockada até a obra:", dist, "m");
-          setCanAdd(dist <= 10);
         } else {
-        navigator.geolocation.getCurrentPosition(
-          (pos) => {
-            const userLat = pos.coords.latitude;
-            const userLon = pos.coords.longitude;
-            const dist = getDistanceFromLatLonInMeters(userLat, userLon, obraLat, obraLon);
-            console.log("📏 Distância real até a obra:", dist, "m");
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              const userLat = pos.coords.latitude;
+              const userLon = pos.coords.longitude;
+              const dist = getDistanceFromLatLonInMeters(
+                userLat,
+                userLon,
+                obraLat,
+                obraLon
+              );
+              console.log("📏 Distância real até a obra:", dist, "m");
 
-            setDistance(dist);
-            setCanAdd(dist <= 10);
-          },
-          (err) => {
-            console.error("Erro ao obter geolocalização:", err);
-          }
-        );
-
+              setUserLocation({ latitude: userLat, longitude: userLon });
+              setDistance(dist);
+              setCanAdd(dist <= 10);
+            },
+            (err) => {
+              console.error("Erro ao obter geolocalização:", err);
+            }
+          );
         }
       }
     }, [obra, userLocation]);
+
 
 
 

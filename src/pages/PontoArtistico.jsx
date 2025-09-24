@@ -17,6 +17,7 @@ const PontoArtistico = () => {
   const [canAdd, setCanAdd] = useState(false);
   const [alreadyCollected, setAlreadyCollected] = useState(false);
   const [userLocation, setUserLocation] = useState(null);
+  const [distance, setDistance] = useState(null);
 
 
 
@@ -106,6 +107,9 @@ const PontoArtistico = () => {
             obraLat,
             obraLon
           );
+          setDistance(dist);
+          setCanAdd(dist <= 10);
+
           console.log("📏 Distância mockada até a obra:", dist, "m");
           setCanAdd(dist <= 10);
         } else {
@@ -209,7 +213,7 @@ const PontoArtistico = () => {
             ? "Obra já coletada"
             : canAdd
             ? "Adicionar ao Trajeto"
-            : "Chegue mais perto da obra"}
+            : `Chegue mais perto da obra (${distance ? distance.toFixed(1) : "?"} m)`}
         </Button>
 
 

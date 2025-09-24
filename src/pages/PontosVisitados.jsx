@@ -22,7 +22,7 @@ const PontoVisitadoItem = ({ title, date, location }) => {
       <img
         src={planetarioImage}
         alt="Imagem do Ponto Visitado"
-        className="h-20 w-24 object-cover rounded-md ml-4"
+        className="h-20 w-32 object-cover rounded-md ml-4"
       />
     </div>
   );

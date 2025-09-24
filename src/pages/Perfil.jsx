@@ -2,13 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/containers/Header";
 import { BottomNav } from "@/components/containers/BottomNav";
 import { Button } from "@/components/ui/button.jsx";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../context/UserContext";
 
 const Perfil = () => {
   const navigate = useNavigate();
   const { user, logout, setUser } = useContext(UserContext);
   const fileInputRef = useRef(null);
+  const [conquistas, setConquistas] = useState([]);
+
 
   const handleAvatarClick = () => {
     fileInputRef.current.click();
@@ -44,6 +46,16 @@ const Perfil = () => {
       navigate("/");
     }
   }, [user, navigate]);
+
+  useEffect(() => {
+      if (user) {
+        fetch(`https://trajeto-cultural-backend.onrender.com/conquistaobtida/get_lista?id_usuario=${user.user_id}`)
+          .then(res => res.json())
+          .then(data => setConquistas(data))
+          .catch(err => console.error("Erro ao carregar conquistas:", err));
+      }
+  }, [user]);
+
 
   return (
     <div className="relative flex h-screen flex-col bg-purple-600">
@@ -90,16 +102,19 @@ const Perfil = () => {
 
         {/* Conquistas */}
         <div className="mb-12 flex w-full justify-center gap-4">
-          <div className="flex items-center justify-center rounded-xl bg-purple-400 px-4 py-3 text-white shadow-md">
-            Conquista X
-          </div>
-          <div className="flex items-center justify-center rounded-xl bg-purple-400 px-4 py-3 text-white shadow-md">
-            Conquista Y
-          </div>
-          <div className="flex items-center justify-center rounded-xl bg-purple-400 px-4 py-3 text-white shadow-md">
-            Conquista Z
-          </div>
+          {conquistas.slice(-3).map((c) => (
+            <div
+              key={c.id}
+              className="flex items-center justify-center rounded-xl bg-purple-400 px-4 py-3 text-white shadow-md"
+            >
+              {c.nome_conquista}
+            </div>
+          ))}
+          {conquistas.length === 0 && (
+            <p className="text-gray-500">Nenhuma conquista ainda.</p>
+          )}
         </div>
+
 
         <Button
           className="w-full max-w-xs rounded-full bg-orange-500 py-3 text-base font-bold text-white shadow-md hover:bg-orange-600"

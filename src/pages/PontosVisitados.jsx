@@ -3,6 +3,8 @@ import { Header } from "@/components/containers/Header";
 import { BottomNav } from "@/components/containers/BottomNav";
 import { MapPin, Calendar } from "lucide-react";
 
+import planetarioImage from "../assets/planetario.png";
+
 const PontoVisitadoItem = ({ title, date, location }) => {
   return (
     <div className="flex items-center bg-gray-100 p-4 my-2 rounded-lg shadow-sm">
@@ -17,6 +19,11 @@ const PontoVisitadoItem = ({ title, date, location }) => {
           <span>{date}</span>
         </div>
       </div>
+      <img
+        src={planetarioImage}
+        alt="Imagem do Ponto Visitado"
+        className="h-20 w-24 object-cover rounded-md ml-4"
+      />
     </div>
   );
 };

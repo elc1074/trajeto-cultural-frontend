@@ -1,7 +1,6 @@
 import { Header } from "@/components/containers/Header";
 import { BottomNav } from "@/components/containers/BottomNav";
 import { Star } from "lucide-react";
-
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 

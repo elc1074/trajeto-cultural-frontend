@@ -28,7 +28,7 @@ export function BottomNav() {
 
         <button
           className="text-white text-2xl hover:opacity-80"
-          onClick={() => navigate("/ponto-artistico")}
+          onClick={() => navigate("/pontos-visitados")}
         >
           <MapPin />
         </button>

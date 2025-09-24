@@ -11,6 +11,7 @@ import Home from "./pages/Home.jsx";
 import ConquistasPage from "./pages/ConquistasPage.jsx";
 import Perfil from "./pages/Perfil.jsx";
 import PontoArtistico from "./pages/PontoArtistico.jsx";
+import PontosVisitados from "./pages/PontosVisitados.jsx";
 import EventosDetails from "./pages/EventosDetails.jsx";
 
 import { UserProvider } from "./context/UserContext.jsx";
@@ -43,6 +44,10 @@ const AppContent = () => {
     {
       path: "/ponto-artistico",
       element: <PontoArtistico />,
+    },
+    {
+      path: "/pontos-visitados",
+      element: <PontosVisitados />,
     },
     {
       path: "/eventos-details",

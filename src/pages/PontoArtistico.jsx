@@ -6,7 +6,6 @@ import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
-
 const PontoArtistico = () => {
   const [obra, setObra] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,8 +17,6 @@ const PontoArtistico = () => {
   const [alreadyCollected, setAlreadyCollected] = useState(false);
   const [userLocation, setUserLocation] = useState(null);
   const [distance, setDistance] = useState(null);
-
-
 
   function getDistanceFromLatLonInMeters(lat1, lon1, lat2, lon2) {
       const R = 6371000;
@@ -34,8 +31,6 @@ const PontoArtistico = () => {
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       return R * c;
   }
-
-
 
   useEffect(() => {
     if (obraId) {
@@ -72,7 +67,6 @@ const PontoArtistico = () => {
       }
     }, [obra, user]);
 
-
 // teste localização fixa
 /*useEffect(() => {
   if (obra) {
@@ -89,11 +83,6 @@ const PontoArtistico = () => {
     });
   }
 }, [obra]);*/
-
-
-
-
-
 
     useEffect(() => {
       if (obra?.latitude && obra?.longitude) {

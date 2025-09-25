@@ -143,8 +143,7 @@ const PontoArtistico = () => {
     );
   }
 
-  const imageUrl =
-    obra?.thumbnail?.medium?.[0] || "https://via.placeholder.com/300";
+  const imageUrl = obra?.thumbnail || "https://via.placeholder.com/300";
 
   const handleAddObraVisitada = async () => {
       if (!user) {

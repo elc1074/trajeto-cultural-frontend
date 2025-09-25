@@ -6,6 +6,8 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useState, useEffect } from "react";
 
+
+
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -22,19 +24,38 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
 
-  useEffect(() => {
+useEffect(() => {
+  let cancel = false;
+
+  const fetchData = async () => {
     setLoading(true);
-    fetch("https://trajeto-cultural-backend.onrender.com/acervo/get_lista")
-      .then((res) => res.json())
-      .then((data) => {
-        setObras(data);
-        setLoading(false);
-      })
-      .catch((err) => {
+    let page = 1;
+    let allObras = [];
+
+    while (true) {
+      try {
+        const res = await fetch(`https://trajeto-cultural-backend.onrender.com/acervo/get_lista?page=${page}&per_page=100`);
+        const data = await res.json();
+        if (!data.length) break;
+
+        allObras = [...allObras, ...data];
+        if (cancel) break;
+
+        setObras([...allObras]);
+        page++;
+      } catch (err) {
         console.error("Erro ao carregar obras:", err);
-        setLoading(false);
-      });
-  }, []);
+        break;
+      }
+    }
+
+    if (!cancel) setLoading(false);
+  };
+
+  fetchData();
+  return () => { cancel = true; };
+}, []);
+
 
   return (
     <div className="relative flex h-screen flex-col bg-purple-600">
@@ -42,6 +63,8 @@ const HomePage = () => {
 
       {/* Wrapper com bordas arredondadas */}
       <div className="h-full w-full overflow-hidden rounded-t-2xl bg-white">
+
+
         <MapContainer
           center={[-29.7206, -53.7165]}
           zoom={15}
@@ -50,25 +73,27 @@ const HomePage = () => {
           <TileLayer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" />
 
 
-          {!loading &&
-            obras
-              .filter((obra) => obra.latitude && obra.longitude)
-              .map((obra) => (
-                <Marker
-                  key={obra.id}
-                  position={[
-                    parseFloat(obra.latitude),
-                    parseFloat(obra.longitude),
-                  ]}
-                  eventHandlers={{
-                    click: () => {
-                      navigate(`/ponto-artistico?id=${obra.id}`);
-                    },
-                  }}
-                >
-                  <Popup>{obra.title}</Popup>
-                </Marker>
-              ))}
+{obras
+  .filter((obra) => obra.latitude && obra.longitude)
+  .map((obra) => (
+    <Marker
+      key={obra.id}
+      position={[
+        parseFloat(obra.latitude),
+        parseFloat(obra.longitude),
+      ]}
+      eventHandlers={{
+        click: () => {
+          navigate(`/ponto-artistico?id=${obra.id}`);
+        },
+      }}
+    >
+      <Popup>{obra.title}</Popup>
+    </Marker>
+  ))}
+
+
+
         </MapContainer>
       </div>
 

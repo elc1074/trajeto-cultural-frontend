@@ -14,33 +14,12 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
-const userIcon = L.icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowUrl:
-    "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
-});
 
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [obras, setObras] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [userLocation, setUserLocation] = useState(null);
-
-  useEffect(() => {
-  navigator.geolocation.getCurrentPosition(
-    (pos) => {
-      setUserLocation([pos.coords.latitude, pos.coords.longitude]);
-    },
-    (err) => {
-      console.error("Erro ao obter localização do usuário:", err);
-    }
-  );
-  }, []);
 
 
   useEffect(() => {
@@ -69,11 +48,6 @@ const HomePage = () => {
           className="h-full w-full"
         >
           <TileLayer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" />
-          {userLocation && (
-              <Marker position={userLocation} icon={userIcon}>
-                <Popup>📍 Você está aqui</Popup>
-              </Marker>
-            )}
 
 
           {!loading &&

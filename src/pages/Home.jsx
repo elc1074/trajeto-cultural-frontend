@@ -22,31 +22,31 @@ const userIcon = L.icon({
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
-  shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
+  shadowUrl:
+    "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [obras, setObras] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [userPosition, setUserPosition] = useState(null);
+
+  const [userLocation, setUserLocation] = useState(null);
+
+  useEffect(() => {
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      setUserLocation([pos.coords.latitude, pos.coords.longitude]);
+    },
+    (err) => {
+      console.error("Erro ao obter localização do usuário:", err);
+    }
+  );
+  }, []);
 
 
 useEffect(() => {
   let cancel = false;
-
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          if (!cancel) {
-            setUserPosition([pos.coords.latitude, pos.coords.longitude]);
-          }
-        },
-        (err) => {
-          console.warn("Erro ao obter localização do usuário:", err);
-        }
-      );
-  }
 
   const fetchData = async () => {
     setLoading(true);
@@ -93,15 +93,14 @@ useEffect(() => {
         >
           <TileLayer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" />
 
-{userPosition && (
-  <Marker position={userPosition} icon={userIcon}>
-    <Popup>Você está aqui</Popup>
+{userLocation && (
+  <Marker position={userLocation} icon={userIcon}>
+    <Popup>📍 Você está aqui</Popup>
   </Marker>
 )}
 
 {obras
   .filter((obra) => obra.latitude && obra.longitude)
-
   .map((obra) => (
     <Marker
       key={obra.id}

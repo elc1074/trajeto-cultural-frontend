@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -11,6 +11,25 @@ const Register = () => {
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [erro, setErro] = useState("");
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let interval;
+    if (loading) {
+      setProgress(0);
+      interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev < 90) return prev + 10;
+          return prev;
+        });
+      }, 300);
+    } else if (!loading && progress > 0) {
+      setProgress(100);
+      const timeout = setTimeout(() => setProgress(0), 500);
+      return () => clearTimeout(timeout);
+    }
+    return () => clearInterval(interval);
+  }, [loading]);
 
   const handleRegister = async () => {
     if (senha !== confirmarSenha) {
@@ -93,17 +112,25 @@ const Register = () => {
             className="rounded-full border border-gray-300 bg-white p-3 text-purple-600 placeholder-purple-400 focus:outline-none"
           />
 
-          <Button
-            className="mt-2 flex items-center justify-center rounded-full bg-purple-500 py-3 text-lg text-white hover:bg-purple-600"
-            onClick={handleRegister}
-            disabled={loading}
-          >
-            {loading ? (
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-            ) : (
-              "Cadastre-se"
+          <div className="relative w-full">
+            <Button
+              className="mt-2 flex w-full items-center justify-center rounded-full bg-purple-500 py-3 text-lg text-white hover:bg-purple-600"
+              onClick={handleRegister}
+              disabled={loading}
+            >
+              Cadastre-se
+            </Button>
+
+            {/* Barra de progresso */}
+            {loading && (
+              <div className="absolute bottom-0 left-0 right-0 h-1 rounded-full bg-gray-200 overflow-hidden">
+                <div
+                  className="h-1 bg-orange-500 transition-all duration-300 ease-linear"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
             )}
-          </Button>
+          </div>
 
           {erro && (
             <p className="mt-2 text-center text-sm text-red-500">{erro}</p>

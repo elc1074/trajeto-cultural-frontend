@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 
 const Login = () => {
@@ -11,6 +11,26 @@ const Login = () => {
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  // efeito para animar a barra
+  useEffect(() => {
+    let interval;
+    if (loading) {
+      setProgress(0);
+      interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev < 90) return prev + 10; // vai até 90%
+          return prev;
+        });
+      }, 300);
+    } else {
+      setProgress(100);
+      const timeout = setTimeout(() => setProgress(0), 500); // reseta depois de completar
+      return () => clearTimeout(timeout);
+    }
+    return () => clearInterval(interval);
+  }, [loading]);
 
   const handleLogin = async () => {
     setLoading(true);
@@ -78,17 +98,25 @@ const Login = () => {
             className="mb-4 w-full rounded-full bg-gray-100 p-3 text-gray-700 placeholder-gray-500 focus:outline-none"
           />
 
-          <Button
-            className="flex w-full items-center justify-center rounded-full bg-purple-600 py-3 text-base text-white hover:bg-purple-700"
-            onClick={handleLogin}
-            disabled={loading}
-          >
-            {loading ? (
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-            ) : (
-              "Entrar"
+          <div className="relative w-full">
+            <Button
+              className="flex w-full items-center justify-center rounded-full bg-purple-600 py-3 text-base text-white hover:bg-purple-700"
+              onClick={handleLogin}
+              disabled={loading}
+            >
+              Entrar
+            </Button>
+
+            {/* Barra de progresso */}
+            {loading && (
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="h-1 bg-orange-500 transition-all duration-300 ease-linear"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
             )}
-          </Button>
+          </div>
 
           {erro && (
             <p className="mt-2 text-center text-sm text-red-500">{erro}</p>

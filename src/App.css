@@ -6,21 +6,18 @@
 /*@import "tw-animate-css";
 @import "leaflet/dist/leaflet.css";*/
 
-/* Reset básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Estilo base do body */
 body {
   background: linear-gradient(to bottom, #7e22ce, #a855f7);
   color: white;
   font-family: sans-serif;
 }
 
-/* Variáveis CSS customizadas (funciona no v3 também) */
 :root {
   --radius: 0.625rem;
   --color-background: #ffffff;
@@ -38,7 +35,6 @@ body {
   --color-ring: #3b82f6; /* blue-500 */
 }
 
-/* Base layer para integrar variáveis ao Tailwind v3 */
 @layer base {
   * {
     @apply outline-none;
@@ -48,4 +44,73 @@ body {
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+@keyframes drawMapLine1 {
+  0% {
+    height: 0;
+    width: 3px;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  30% {
+    height: 60%;
+    width: 3px;
+    opacity: 1;
+  }
+  70% {
+    height: 60%;
+    width: 3px;
+    opacity: 1;
+  }
+  100% {
+    height: 0;
+    width: 3px;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+}
+
+@keyframes drawMapLine2 {
+  0% {
+    width: 0;
+    height: 3px;
+    top: 20%;
+    left: 20%;
+    opacity: 0;
+  }
+  30% {
+    width: 70%;
+    height: 3px;
+    opacity: 1;
+  }
+  70% {
+    width: 70%;
+    height: 3px;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    height: 3px;
+    top: 20%;
+    left: 20%;
+    opacity: 0;
+  }
+}
+
+.map-line-1 {
+  animation: drawMapLine1 3s infinite ease-in-out;
+  animation-delay: 0.1s;
+}
+
+.map-line-2 {
+  animation: drawMapLine2 3s infinite ease-in-out;
+  animation-delay: 1s; 
+}
+
+.map-loader {
 }

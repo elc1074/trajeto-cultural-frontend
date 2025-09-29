@@ -5,6 +5,20 @@ import { Header } from "@/components/containers/Header";
 import { BottomNav } from "@/components/containers/BottomNav";
 import { Calendar } from "lucide-react";
 
+const Loader = ({ message }) => (
+    <div className="flex flex-col items-center justify-center h-full w-full bg-white p-10 min-h-64">
+      <div className="flex space-x-2 mb-6">
+        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
+        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
+        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0.6s', animationDuration: '1.5s' }}></div>
+      </div>
+      <p className="mt-6 text-xl font-bold text-gray-800">
+        {message}
+      </p>
+    </div>
+);
+
+
 const PontoVisitadoItem = ({ title, date, location, image }) => {
   return (
     <div className="flex items-center bg-gray-100 p-4 my-2 rounded-lg shadow-sm">
@@ -35,9 +49,13 @@ const PontosVisitados = () => {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+        setLoading(false);
+        return;
+    }
 
     const fetchPontos = async () => {
+      setLoading(true);
       try {
         const res = await fetch(
           `https://trajeto-cultural-backend.onrender.com/obravisitada/get_lista?id_usuario=${user.user_id}`
@@ -82,13 +100,6 @@ const PontosVisitados = () => {
     fetchPontos();
   }, [user]);
 
-  if (loading) {
-    return (
-      <div className="h-screen flex items-center justify-center text-white bg-purple-600">
-        Carregando...
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen flex flex-col bg-purple-600 relative">
@@ -98,7 +109,10 @@ const PontosVisitados = () => {
           <h1 className="mb-6 text-2xl font-bold text-gray-800">
             Pontos Visitados
           </h1>
-          {pontos.length > 0 ? (
+          
+          {loading ? (
+            <Loader message="Carregando Pontos Visitados..." />
+          ) : pontos.length > 0 ? (
             pontos.map((ponto) => (
               <PontoVisitadoItem
                 key={ponto.id}

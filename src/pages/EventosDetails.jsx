@@ -5,6 +5,19 @@ import { Button } from "@/components/ui/button.jsx";
 
 import { Calendar, Filter } from "lucide-react";
 
+const Loader = ({ message }) => (
+    <div className="flex flex-col items-center justify-center h-full w-full bg-white p-10 min-h-64">
+      <div className="flex space-x-2 mb-6">
+        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
+        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
+        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0.6s', animationDuration: '1.5s' }}></div>
+      </div>
+      <p className="mt-6 text-xl font-bold text-gray-800">
+        {message}
+      </p>
+    </div>
+);
+
 const EventoItem = ({ title, date, price }) => {
   return (
     <div className="my-2 flex items-center justify-between rounded-lg bg-gray-100 p-4 shadow-sm">
@@ -55,34 +68,34 @@ const EventosDetails = () => {
     }, 1000);
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-purple-600 text-white">
-        Carregando...
-      </div>
-    );
-  }
-
   return (
     <div className="relative flex min-h-screen flex-col bg-purple-500">
       <Header section="Eventos" />
       <div className="z-10 flex flex-1 flex-col items-center overflow-y-auto rounded-t-3xl bg-white px-6 py-6">
         <div className="mb-4 flex w-full max-w-xl items-center justify-between">
-          <h2 className="text-xl font-bold text-gray-800">Eventos</h2>
-          <div className="flex items-center">
-            <span className="mr-2 text-sm text-purple-600">Filtrar</span>
-            <Filter className="text-purple-600" size={18} />
-          </div>
+          <h2 className="text-2xl font-bold text-gray-800">Eventos</h2>
+          
+          {loading ? null : (
+            <div className="flex items-center">
+              <span className="mr-2 text-sm text-purple-600">Filtrar</span>
+              <Filter className="text-purple-600" size={18} />
+            </div>
+          )}
         </div>
+        
         <div className="w-full max-w-xl">
-          {eventos.map((evento) => (
-            <EventoItem
-              key={evento.id}
-              title={evento.title}
-              date={evento.date}
-              price={evento.price}
-            />
-          ))}
+          {loading ? (
+            <Loader message="Buscando Eventos Culturais..." />
+          ) : (
+            eventos.map((evento) => (
+              <EventoItem
+                key={evento.id}
+                title={evento.title}
+                date={evento.date}
+                price={evento.price}
+              />
+            ))
+          )}
         </div>
       </div>
       <BottomNav />

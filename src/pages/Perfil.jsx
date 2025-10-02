@@ -140,12 +140,17 @@ const Perfil = () => {
                 <p className="mb-8 text-sm text-gray-500">Curso de Graduação</p>
 
                 <div className="mb-10 flex h-6 w-full max-w-xs items-center justify-start rounded-full bg-purple-200">
-                    <div
-                      className="flex h-6 items-center justify-center rounded-full bg-purple-500 px-4 text-sm font-semibold text-white transition-all duration-500"
-                      style={{ width: `${Math.min((pontos / 50) * 100, 100)}%` }}
-                    >
-                      {pontos} / 50
-                    </div>
+                <div className="relative w-full max-w-xs h-6 rounded-full bg-purple-200">
+                  <div
+                    className="absolute top-0 left-0 h-6 rounded-full bg-purple-500 transition-all duration-500"
+                    style={{ width: `${Math.min((pontos / 50) * 100, 100)}%` }}
+                  ></div>
+                  <div className="absolute inset-0 flex items-center justify-center text-sm font-semibold text-white">
+                    {pontos} / 50
+                  </div>
+                </div>
+
+
 
                 </div>
 

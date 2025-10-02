@@ -127,13 +127,30 @@ const PontoArtistico = () => {
 
 
 
-  if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-purple-600 text-white">
-        Carregando...
-      </div>
-    );
-  }
+    if (loading) {
+      return (
+        <div className="flex flex-col items-center justify-center h-screen w-full bg-white p-10">
+          <div className="flex space-x-2 mb-6">
+            <div
+              className="h-4 w-4 bg-purple-600 rounded-full animate-pulse"
+              style={{ animationDelay: "0s", animationDuration: "1.5s" }}
+            ></div>
+            <div
+              className="h-4 w-4 bg-purple-600 rounded-full animate-pulse"
+              style={{ animationDelay: "0.3s", animationDuration: "1.5s" }}
+            ></div>
+            <div
+              className="h-4 w-4 bg-purple-600 rounded-full animate-pulse"
+              style={{ animationDelay: "0.6s", animationDuration: "1.5s" }}
+            ></div>
+          </div>
+          <p className="mt-6 text-xl font-bold text-gray-800">
+            Carregando obra...
+          </p>
+        </div>
+      );
+    }
+
 
   if (!obra) {
     return (
@@ -187,9 +204,7 @@ const PontoArtistico = () => {
         <h2 className="text-center text-xl font-bold text-orange-500">
           {obra.title}
         </h2>
-        <p className="mt-1 text-center text-sm text-purple-600">
-          {obra.localizacao || "Localização não informada"}
-        </p>
+
         <p className="mb-6 text-center text-sm text-purple-600">
           {obra.author_name}
         </p>

@@ -25,6 +25,7 @@ const Perfil = () => {
   const fileInputRef = useRef(null);
   const [conquistas, setConquistas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [pontos, setPontos] = useState(0);
 
 
   const handleAvatarClick = () => {
@@ -82,6 +83,14 @@ const Perfil = () => {
             console.error("Erro ao carregar conquistas:", err);
             setLoading(false);
           });
+      fetch(`https://trajeto-cultural-backend.onrender.com/usuario/get_pontos?id=${user.user_id}`)
+          .then(res => res.json())
+          .then(data => {
+            setPontos(data);
+          })
+          .catch(err => {
+            console.error("Erro ao carregar pontos:", err);
+      });
       } else {
         setLoading(false);
       }
@@ -131,12 +140,13 @@ const Perfil = () => {
                 <p className="mb-8 text-sm text-gray-500">Curso de Graduação</p>
 
                 <div className="mb-10 flex h-6 w-full max-w-xs items-center justify-start rounded-full bg-purple-200">
-                  <div
-                    className="flex h-6 items-center justify-center rounded-full bg-purple-500 px-4 text-sm font-semibold text-white"
-                    style={{ width: "75%" }}
-                  >
-                    3752 / 5000
-                  </div>
+                    <div
+                      className="flex h-6 items-center justify-center rounded-full bg-purple-500 px-4 text-sm font-semibold text-white transition-all duration-500"
+                      style={{ width: `${Math.min((pontos / 50) * 100, 100)}%` }}
+                    >
+                      {pontos} / 50
+                    </div>
+
                 </div>
 
                 <div className="mb-12 flex w-full justify-center gap-4">

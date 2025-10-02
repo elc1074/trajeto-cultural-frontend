@@ -5,6 +5,9 @@ import { Header } from "@/components/containers/Header";
 import { BottomNav } from "@/components/containers/BottomNav";
 import { Calendar } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
+
+
 const Loader = ({ message }) => (
     <div className="flex flex-col items-center justify-center h-full w-full bg-white p-10 min-h-64">
       <div className="flex space-x-2 mb-6">
@@ -19,20 +22,20 @@ const Loader = ({ message }) => (
 );
 
 
-const PontoVisitadoItem = ({ title, date, location, image }) => {
+const PontoVisitadoItem = ({ title, date, location, image, onClick }) => {
   return (
-    <div className="flex items-center bg-gray-100 p-4 my-2 rounded-lg shadow-sm">
+    <div
+      className="flex items-center bg-gray-100 p-4 my-2 rounded-lg shadow-sm cursor-pointer hover:bg-gray-200 transition"
+      onClick={onClick}
+    >
       <div className="flex flex-col flex-1">
         <span className="text-gray-800 font-medium">{title}</span>
-
         <div className="flex items-center text-gray-500 text-sm mt-1">
           <Calendar className="h-4 w-4 mr-2" />
           <span>{date}</span>
         </div>
-
         <p className="text-xs text-gray-400 mt-1">{location}</p>
       </div>
-
       <img
         src={image}
         alt={title}
@@ -42,63 +45,74 @@ const PontoVisitadoItem = ({ title, date, location, image }) => {
   );
 };
 
+
 const PontosVisitados = () => {
-  const [pontos, setPontos] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [pontos, setPontos] = useState(() => {
+      const saved = localStorage.getItem("pontosVisitados");
+      return saved ? JSON.parse(saved) : [];
+  });
+  const [loading, setLoading] = useState(pontos.length === 0);
+
 
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
-    if (!user) {
+      if (!user) {
         setLoading(false);
         return;
-    }
-
-    const fetchPontos = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch(
-          `https://trajeto-cultural-backend.onrender.com/obravisitada/get_lista?id_usuario=${user.user_id}`
-        );
-        const visitadas = await res.json();
-
-        const obrasDetalhadas = await Promise.all(
-          visitadas.map(async (o) => {
-            const obraRes = await fetch(
-              `https://trajeto-cultural-backend.onrender.com/acervo/get_obra/${o.id_obra}`
-            );
-            const obra = await obraRes.json();
-
-
-            const imageUrl =
-              obra?.thumbnail ||
-              "https://via.placeholder.com/300x200?text=Sem+Imagem";
-
-
-
-            return {
-              id: obra.id,
-              title: obra.title || "Sem título",
-              location:
-                obra.latitude && obra.longitude
-                  ? `${obra.latitude}, ${obra.longitude}`
-                  : "Localização não disponível",
-              date: new Date(o.data_obtida || Date.now()).toLocaleDateString("pt-BR"),
-              image: imageUrl,
-            };
-          })
-        );
-
-        setPontos(obrasDetalhadas);
-      } catch (err) {
-        console.error("Erro ao carregar pontos visitados:", err);
-      } finally {
-        setLoading(false);
       }
-    };
 
-    fetchPontos();
-  }, [user]);
+      if (pontos.length > 0) {
+        setLoading(false);
+        return;
+      }
+
+      const fetchPontos = async () => {
+        setLoading(true);
+        try {
+          const res = await fetch(
+            `https://trajeto-cultural-backend.onrender.com/obravisitada/get_lista?id_usuario=${user.user_id}`
+          );
+          const visitadas = await res.json();
+
+          const obrasDetalhadas = await Promise.all(
+            visitadas.map(async (o) => {
+              const obraRes = await fetch(
+                `https://trajeto-cultural-backend.onrender.com/acervo/get_obra/${o.id_obra}`
+              );
+              const obra = await obraRes.json();
+
+              const imageUrl =
+                obra?.thumbnail ||
+                "https://via.placeholder.com/300x200?text=Sem+Imagem";
+
+              return {
+                id: obra.id,
+                title: obra.title || "Sem título",
+                location:
+                  obra.latitude && obra.longitude
+                    ? `${obra.latitude}, ${obra.longitude}`
+                    : "Localização não disponível",
+                date: new Date(o.data_obtida || Date.now()).toLocaleDateString("pt-BR"),
+                image: imageUrl,
+              };
+            })
+          );
+
+          setPontos(obrasDetalhadas);
+          localStorage.setItem("pontosVisitados", JSON.stringify(obrasDetalhadas)); // ✅ salva no navegador
+        } catch (err) {
+          console.error("Erro ao carregar pontos visitados:", err);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchPontos();
+  }, [user, pontos]);
+
 
 
   return (
@@ -106,21 +120,21 @@ const PontosVisitados = () => {
       <Header section="Pontos Visitados" />
       <div className="flex-1 bg-white rounded-t-3xl flex flex-col items-center px-6 py-6 overflow-y-auto z-10">
         <div className="w-full max-w-xl">
-          <h1 className="mb-6 text-2xl font-bold text-gray-800">
-            Pontos Visitados
-          </h1>
+
           
           {loading ? (
             <Loader message="Carregando Pontos Visitados..." />
           ) : pontos.length > 0 ? (
             pontos.map((ponto) => (
-              <PontoVisitadoItem
-                key={ponto.id}
-                title={ponto.title}
-                date={ponto.date}
-                location={ponto.location}
-                image={ponto.image}
-              />
+            <PontoVisitadoItem
+              key={ponto.id}
+              title={ponto.title}
+              date={ponto.date}
+              location={ponto.location}
+              image={ponto.image}
+              onClick={() => navigate(`/ponto-artistico?id=${ponto.id}`)}
+            />
+
             ))
           ) : (
             <p className="text-gray-500 text-center mt-8">

@@ -40,8 +40,12 @@ const MapLoadingAnimation = () => (
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [obras, setObras] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [obras, setObras] = useState(() => {
+      const saved = localStorage.getItem("obras");
+      return saved ? JSON.parse(saved) : [];
+  });
+  const [loading, setLoading] = useState(obras.length === 0);
+
 
   const [userLocation, setUserLocation] = useState(null);
 
@@ -58,36 +62,45 @@ const HomePage = () => {
 
 
   useEffect(() => {
-    let cancel = false;
-
-    const fetchData = async () => {
-      setLoading(true);
-      let page = 1;
-      let allObras = [];
-
-      while (true) {
-        try {
-          const res = await fetch(`https://trajeto-cultural-backend.onrender.com/acervo/get_lista?page=${page}&per_page=100`);
-          const data = await res.json();
-          if (!data || data.length === 0) break;
-
-          allObras = [...allObras, ...data];
-          if (cancel) break;
-
-          setObras([...allObras]);
-          page++;
-        } catch (err) {
-          console.error("Erro ao carregar obras:", err);
-          break;
-        }
+      if (obras.length > 0) {
+        setLoading(false);
+        return;
       }
 
-      if (!cancel) setLoading(false);
-    };
+      let cancel = false;
 
-    fetchData();
-    return () => { cancel = true; };
-  }, []);
+      const fetchData = async () => {
+        setLoading(true);
+        let page = 1;
+        let allObras = [];
+
+        while (true) {
+          try {
+            const res = await fetch(`https://trajeto-cultural-backend.onrender.com/acervo/get_lista?page=${page}&per_page=100`);
+            const data = await res.json();
+            if (!data || data.length === 0) break;
+
+            allObras = [...allObras, ...data];
+            if (cancel) break;
+
+            page++;
+          } catch (err) {
+            console.error("Erro ao carregar obras:", err);
+            break;
+          }
+        }
+
+        if (!cancel) {
+          setObras(allObras);
+          localStorage.setItem("obras", JSON.stringify(allObras)); // ✅ salva no navegador
+          setLoading(false);
+        }
+      };
+
+      fetchData();
+      return () => { cancel = true; };
+  }, [obras]);
+
 
 
   return (

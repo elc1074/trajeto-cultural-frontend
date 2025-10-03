@@ -1,8 +1,8 @@
 import {
   Home,
-  Star,
+  Trophy,
   MapPin,
-  BookOpen,
+  CalendarDays,
   User,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,7 @@ export function BottomNav() {
           className="text-white text-2xl hover:opacity-80"
           onClick={() => navigate("/conquistas")}
         >
-          <Star />
+          <Trophy />
         </button>
 
         <button
@@ -37,7 +37,7 @@ export function BottomNav() {
           className="text-white text-2xl hover:opacity-80"
           onClick={() => navigate("/eventos-details")}
         >
-          <BookOpen />
+          <CalendarDays />
         </button>
 
         <button

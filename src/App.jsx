@@ -13,7 +13,7 @@ import Perfil from "./pages/Perfil.jsx";
 import PontoArtistico from "./pages/PontoArtistico.jsx";
 import PontosVisitados from "./pages/PontosVisitados.jsx";
 import EventosDetails from "./pages/EventosDetails.jsx";
-
+import { Avaliacao } from "./pages/Avaliacao.jsx";
 import { UserProvider } from "./context/UserContext.jsx";
 import { useClarity } from "./hooks/useClarity.js";
 
@@ -52,6 +52,10 @@ const AppContent = () => {
     {
       path: "/eventos-details",
       element: <EventosDetails />,
+    },
+    {
+      path: "/avaliacao",
+      element: <Avaliacao />,
     },
     {
       path: "/perfil",

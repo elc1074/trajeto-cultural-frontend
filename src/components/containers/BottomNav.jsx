@@ -2,13 +2,14 @@ import {
   Home,
   Trophy,
   MapPin,
-  CalendarDays,
+  Star,
   User,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function BottomNav() {
   const navigate = useNavigate();
+
   return (
     <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-purple-600 rounded-full px-6 py-3 shadow-lg z-[9999]">
       <nav className="flex justify-between items-center gap-6">
@@ -35,9 +36,9 @@ export function BottomNav() {
 
         <button
           className="text-white text-2xl hover:opacity-80"
-          onClick={() => navigate("/eventos-details")}
+          onClick={() => navigate("/avaliacao")}
         >
-          <CalendarDays />
+          <Star />
         </button>
 
         <button

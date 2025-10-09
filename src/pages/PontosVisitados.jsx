@@ -58,60 +58,61 @@ const PontosVisitados = () => {
   const navigate = useNavigate();
 
 
-  useEffect(() => {
-      if (!user) {
+useEffect(() => {
+  if (!user) {
+    setLoading(false);
+    return;
+  }
+
+  const fetchPontos = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(
+        `https://trajeto-cultural-backend.onrender.com/obravisitada/get_lista?id_usuario=${user.user_id}`
+      );
+      const visitadas = await res.json();
+
+      if (!visitadas || visitadas.length === 0) {
+        setPontos([]);
+        localStorage.removeItem("pontosVisitados");
         setLoading(false);
         return;
       }
 
-      if (pontos.length > 0) {
-        setLoading(false);
-        return;
-      }
-
-      const fetchPontos = async () => {
-        setLoading(true);
-        try {
-          const res = await fetch(
-            `https://trajeto-cultural-backend.onrender.com/obravisitada/get_lista?id_usuario=${user.user_id}`
+      const obrasDetalhadas = await Promise.all(
+        visitadas.map(async (o) => {
+          const obraRes = await fetch(
+            `https://trajeto-cultural-backend.onrender.com/acervo/get_obra/${o.id_obra}`
           );
-          const visitadas = await res.json();
+          const obra = await obraRes.json();
 
-          const obrasDetalhadas = await Promise.all(
-            visitadas.map(async (o) => {
-              const obraRes = await fetch(
-                `https://trajeto-cultural-backend.onrender.com/acervo/get_obra/${o.id_obra}`
-              );
-              const obra = await obraRes.json();
+          return {
+            id: obra.id,
+            title: obra.title || "Sem título",
+            location:
+              obra.latitude && obra.longitude
+                ? `${obra.latitude}, ${obra.longitude}`
+                : "Localização não disponível",
+            date: new Date(o.data_obtida || Date.now()).toLocaleDateString("pt-BR"),
+            image:
+              obra?.thumbnail ||
+              "https://via.placeholder.com/300x200?text=Sem+Imagem",
+          };
+        })
+      );
 
-              const imageUrl =
-                obra?.thumbnail ||
-                "https://via.placeholder.com/300x200?text=Sem+Imagem";
+      setPontos(obrasDetalhadas);
+      localStorage.setItem("pontosVisitados", JSON.stringify(obrasDetalhadas));
+    } catch (err) {
+      console.error("Erro ao carregar pontos visitados:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-              return {
-                id: obra.id,
-                title: obra.title || "Sem título",
-                location:
-                  obra.latitude && obra.longitude
-                    ? `${obra.latitude}, ${obra.longitude}`
-                    : "Localização não disponível",
-                date: new Date(o.data_obtida || Date.now()).toLocaleDateString("pt-BR"),
-                image: imageUrl,
-              };
-            })
-          );
+  fetchPontos();
+}, [user]);
 
-          setPontos(obrasDetalhadas);
-          localStorage.setItem("pontosVisitados", JSON.stringify(obrasDetalhadas)); // ✅ salva no navegador
-        } catch (err) {
-          console.error("Erro ao carregar pontos visitados:", err);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchPontos();
-  }, [user, pontos]);
 
 
 

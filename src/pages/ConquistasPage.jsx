@@ -20,44 +20,41 @@ const ConquistasPage = () => {
   const [userConquistas, setUserConquistas] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const conquistasDisponiveis = [
-    { id: 1, nome: "Primeira Visita", pontos: 10 },
-    { id: 2, nome: "Explorador Cultural", pontos: 30 },
-    { id: 3, nome: "Conhecedor da Cidade", pontos: 50 },
-    { id: 4, nome: "Maratonista de Arte", pontos: 100 },
-  ];
+  const [conquistasDisponiveis, setConquistasDisponiveis] = useState([]);
 
-  useEffect(() => {
-    if (user) {
-      setLoading(true);
-      fetch(`https://trajeto-cultural-backend.onrender.com/conquistaobtida/get_lista?id_usuario=${user.user_id}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.length === 0) {
-            setUserConquistas([
-              { id_conquista: 1, data_obtida: new Date().toISOString() }
-            ]);
-          } else {
-            setUserConquistas(data);
-          }
-          setLoading(false);
-        })
-        .catch(err => {
-          console.error("Erro ao carregar conquistas:", err);
-          setUserConquistas([
-            { id_conquista: 1, data_obtida: new Date().toISOString() }
-          ]);
-          setLoading(false);
-        });
-    } else {
+
+useEffect(() => {
+  const fetchConquistas = async () => {
+    setLoading(true);
+    try {
+      const resConquistas = await fetch(
+        "https://trajeto-cultural-backend.onrender.com/conquista/get_lista"
+      );
+      const todas = await resConquistas.json();
+      setConquistasDisponiveis(todas);
+
+      if (user) {
+        const resObtidas = await fetch(
+          `https://trajeto-cultural-backend.onrender.com/conquistaobtida/get_lista?id_usuario=${user.user_id}`
+        );
+        const obtidas = await resObtidas.json();
+        setUserConquistas(obtidas);
+      } else {
+        setUserConquistas([]);
+      }
+    } catch (err) {
+      console.error("Erro ao carregar conquistas:", err);
+    } finally {
       setLoading(false);
-      setUserConquistas([
-        { id_conquista: 1, data_obtida: new Date().toISOString() }
-      ]);
     }
-  }, [user]);
+  };
 
-  const conquistadasIds = userConquistas.map(c => c.id_conquista);
+  fetchConquistas();
+}, [user]);
+
+
+  const conquistadasNomes = userConquistas.map(c => c.nome_conquista);
+
 
   return (
     <div className="relative flex min-h-screen flex-col bg-purple-500">
@@ -71,7 +68,7 @@ const ConquistasPage = () => {
         ) : (
           <ul className="space-y-6">
             {conquistasDisponiveis.map((c) => {
-              const conquistada = conquistadasIds.includes(c.id);
+              const conquistada = conquistadasNomes.includes(c.nome);
               return (
                 <li
                   key={c.id}

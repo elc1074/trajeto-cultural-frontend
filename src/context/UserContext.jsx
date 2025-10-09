@@ -13,9 +13,11 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const login = (userData) => {
-    localStorage.setItem("user", JSON.stringify(userData));
-    setUser(userData);
+      localStorage.removeItem("pontosVisitados");
+      localStorage.setItem("user", JSON.stringify(userData));
+      setUser(userData);
   };
+
 
   const logout = () => {
     localStorage.removeItem("user");

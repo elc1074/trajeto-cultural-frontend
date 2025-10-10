@@ -98,7 +98,7 @@ const PontoArtistico = () => {
           );
           console.log("📏 Distância mockada até a obra:", dist, "m");
           setDistance(dist);
-          setCanAdd(dist <= 10);
+          setCanAdd(dist <= 30);
         } else {
           navigator.geolocation.getCurrentPosition(
             (pos) => {

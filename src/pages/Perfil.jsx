@@ -137,8 +137,6 @@ const Perfil = () => {
                 <h3 className="mb-2 text-xl font-bold text-purple-600">
                   {user?.nome || "Nome do Usuário"}
                 </h3>
-                <p className="mb-8 text-sm text-gray-500">Curso de Graduação</p>
-
                 <div className="mb-10 flex h-6 w-full max-w-xs items-center justify-start rounded-full bg-purple-200">
                 <div className="relative w-full max-w-xs h-6 rounded-full bg-purple-200">
                   <div

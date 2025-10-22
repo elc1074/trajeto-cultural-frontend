@@ -31,18 +31,28 @@ const Start = () => {
         <h1 className="z-10 pb-8 text-3xl font-bold text-purple-600">
           Trajeto Cultural
         </h1>
+
         <Button
           className="z-10 flex w-[200px] items-center justify-center rounded-full bg-orange-500 py-3 text-lg text-white hover:bg-orange-400"
           onClick={() => navigate("/register")}
         >
           Cadastre - se
         </Button>
+
         <Button
-          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-white py-3 text-lg text-gray-700 hover:bg-purple-200 hover:text-white"
+          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-orange-500 py-3 text-lg text-white hover:bg-orange-400"
           onClick={() => navigate("/login")}
         >
           Login
         </Button>
+
+        <Button
+          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-white py-3 text-lg text-gray-700 hover:bg-purple-200 hover:text-white"
+          onClick={() => navigate("/home")}
+        >
+          Acessar sem login
+        </Button>
+
       </div>
     </div>
   );

@@ -1,18 +1,18 @@
 export function Header({section}) {
   return (
     <div className="overflow-hidden">
-      <header className="w-full relative bg-purple-500 py-3">
+      <header className="relative w-full bg-purple-500 py-3">
         <img
-          className="w-[130px] absolute -top-4 left-0"
-          src="/header-1.png"
+          className="absolute -top-4 left-0 w-[130px]"
+          src="/images/header-1.png"
           alt=""
         />
         <img
-          className="w-[100px] absolute -top-4 -right-4"
-          src="/header-2.png"
+          className="absolute -right-4 -top-4 w-[100px]"
+          src="/images/header-2.png"
           alt=""
         />
-        <h1 className="text-white text-center text-2xl font-bold py-2">
+        <h1 className="py-2 text-center text-2xl font-bold text-white">
           {section}
         </h1>
       </header>

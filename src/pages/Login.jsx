@@ -67,7 +67,7 @@ const Login = () => {
       <div className="relative flex h-1/3 flex-col items-start justify-center bg-purple-600 pl-6 text-white">
         <img
           className="absolute -left-6 -top-4 w-[90px]"
-          src="/login-header.png"
+          src="/images/login-header.png"
           alt="ink"
         />
         <h1 className="text-4xl font-bold">Olá !</h1>
@@ -77,17 +77,17 @@ const Login = () => {
       <div className="z-10 -mt-12 flex flex-1 flex-col items-center justify-start">
         <div className="relative flex h-full w-full flex-col items-center rounded-3xl bg-white p-6 shadow-md">
           <button
-          className="mb-4 flex self-start text-sm text-purple-600"
-          onClick={() => navigate("/")}
-        >
-          ← Voltar para tela inicial
-        </button>
+            className="mb-4 flex self-start text-sm text-purple-600"
+            onClick={() => navigate("/")}
+          >
+            ← Voltar para tela inicial
+          </button>
           <h2 className="mb-6 self-start text-2xl font-semibold text-purple-600">
             Login
           </h2>
           <img
             className="absolute -top-20 right-6 w-[140px]"
-            src="/login-pin.png"
+            src="/images/login-pin.png"
             alt=""
           />
 
@@ -117,7 +117,7 @@ const Login = () => {
 
             {/* Barra de progresso */}
             {loading && (
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 rounded-full overflow-hidden">
+              <div className="absolute bottom-0 left-0 right-0 h-1 overflow-hidden rounded-full bg-gray-200">
                 <div
                   className="h-1 bg-orange-500 transition-all duration-300 ease-linear"
                   style={{ width: `${progress}%` }}

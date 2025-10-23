@@ -16,22 +16,22 @@ const Start = () => {
       <div className="relative flex h-screen flex-col items-center justify-center bg-neutral-100">
         <img
           className="absolute -right-14 -top-16 w-[250px]"
-          src="/start-1.png"
+          src="/images/start-1.png"
           alt="map"
         />
         <img
           className="absolute -left-16 top-20 w-[250px]"
-          src="/start-2.png"
+          src="/images/start-2.png"
           alt="map"
         />
         <img
           className="absolute -right-10 top-1/2 w-[150px]"
-          src="/start-3.png"
+          src="/images/start-3.png"
           alt="map"
         />
         <img
           className="absolute -left-16 bottom-4 w-[250px]"
-          src="/start-4.png"
+          src="/images/start-4.png"
           alt="map"
         />
         <img className="z-10 w-[200px]" src="/favicon.png" alt="favicon" />
@@ -60,8 +60,6 @@ const Start = () => {
         >
           Acessar sem login
         </Button>
-
-
       </div>
     </div>
   );

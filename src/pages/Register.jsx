@@ -67,7 +67,7 @@ const Register = () => {
     <div className="relative flex h-screen flex-col items-center justify-center bg-purple-600">
       <img
         className="absolute -left-6 -top-8 w-[150px]"
-        src="/login-header.png"
+        src="/images/login-header.png"
         alt="ink"
       />
       <div className="mt-32 h-full w-full rounded-3xl bg-gray-100 p-8 shadow-lg">

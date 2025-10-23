@@ -16,6 +16,7 @@ import EventosDetails from "./pages/EventosDetails.jsx";
 import { Avaliacao } from "./pages/Avaliacao.jsx";
 import { UserProvider } from "./context/UserContext.jsx";
 import { useClarity } from "./hooks/useClarity.js";
+import InstallPWA from "./components/containers/InstallPWA.jsx";
 
 const AppContent = () => {
   useClarity();
@@ -73,5 +74,6 @@ const AppContent = () => {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AppContent />
+    <InstallPWA />
   </StrictMode>,
 );

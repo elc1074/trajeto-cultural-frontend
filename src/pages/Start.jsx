@@ -3,6 +3,14 @@ import { Button } from "@/components/ui/button";
 
 const Start = () => {
   const navigate = useNavigate();
+
+  const handleAcessarSemLogin = () => {
+    localStorage.removeItem("user");
+
+    console.log("🧹 Login removido, acessando sem login.");
+    navigate("/home");
+  };
+
   return (
     <div className="overflow-hidden">
       <div className="relative flex h-screen flex-col items-center justify-center bg-neutral-100">
@@ -48,10 +56,11 @@ const Start = () => {
 
         <Button
           className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-white py-3 text-lg text-gray-700 hover:bg-purple-200 hover:text-white"
-          onClick={() => navigate("/home")}
+          onClick={handleAcessarSemLogin}
         >
           Acessar sem login
         </Button>
+
 
       </div>
     </div>

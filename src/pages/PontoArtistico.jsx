@@ -40,6 +40,10 @@ const PontoArtistico = () => {
         .then((res) => res.json())
         .then((data) => {
           setObra(data);
+            console.log("📍 Localização da obra:", {
+              latitude: data.latitude,
+              longitude: data.longitude,
+            });
           setLoading(false);
         })
         .catch((err) => {
@@ -49,23 +53,26 @@ const PontoArtistico = () => {
     }
   }, [obraId]);
 
-  useEffect(() => {
-      if (obra && user) {
-        fetch(
-          `https://trajeto-cultural-backend.onrender.com/obravisitada/get_obra_visitada?id_obra=${obra.id}&id_usuario=${user.user_id}`
-        )
-          .then((res) => {
-            if (res.ok) {
-              setAlreadyCollected(true);
-            } else {
-              setAlreadyCollected(false);
-            }
-          })
-          .catch((err) => {
-            console.error("Erro ao verificar obra visitada:", err);
-          });
-      }
-    }, [obra, user]);
+useEffect(() => {
+  if (obra && user) {
+    fetch(
+      `https://trajeto-cultural-backend.onrender.com/obravisitada/get_obra_visitada?id_obra=${obra.id}&id_usuario=${user.user_id}`
+    )
+      .then((res) => {
+        if (res.ok) {
+          setAlreadyCollected(true);
+        } else {
+          setAlreadyCollected(false);
+        }
+      })
+      .catch((err) => {
+        console.error("Erro ao verificar obra visitada:", err);
+        setAlreadyCollected(false);
+      });
+  }
+}, [obra, user]);
+
+
 
 // teste localização fixa
 /*useEffect(() => {

@@ -61,45 +61,80 @@ const HomePage = () => {
   }, []);
 
 
-  useEffect(() => {
-      if (obras.length > 0) {
-        setLoading(false);
-        return;
+useEffect(() => {
+  if (obras.length > 0) {
+    setLoading(false);
+    return;
+  }
+
+  let cancel = false;
+
+  const fetchData = async () => {
+    setLoading(true);
+    let page = 1;
+    let allObras = [];
+
+    const refLat = -29.715771277866914;
+    const refLon = -53.71488398459059;
+
+    function getDistanceFromLatLonInMeters(lat1, lon1, lat2, lon2) {
+      const R = 6371000;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) *
+          Math.cos(lat2 * Math.PI / 180) *
+          Math.sin(dLon / 2) *
+          Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
+    }
+
+    while (true) {
+      try {
+        const res = await fetch(
+          `https://trajeto-cultural-backend.onrender.com/acervo/get_lista?page=${page}&per_page=100`
+        );
+        const data = await res.json();
+        if (!data || data.length === 0) break;
+
+
+        const filtradas = data.filter((obra) => {
+          if (!obra.latitude || !obra.longitude) return true;
+          const dist = getDistanceFromLatLonInMeters(
+            parseFloat(obra.latitude),
+            parseFloat(obra.longitude),
+            refLat,
+            refLon
+          );
+          return dist > 40;
+        });
+
+        allObras = [...allObras, ...filtradas];
+        if (cancel) break;
+
+        page++;
+      } catch (err) {
+        console.error("Erro ao carregar obras:", err);
+        break;
       }
+    }
 
-      let cancel = false;
+    if (!cancel) {
+      console.log("🗺️ Total de obras carregadas:", allObras.length);
+      setObras(allObras);
+      localStorage.setItem("obras", JSON.stringify(allObras));
+      setLoading(false);
+    }
+  };
 
-      const fetchData = async () => {
-        setLoading(true);
-        let page = 1;
-        let allObras = [];
+  fetchData();
+  return () => {
+    cancel = true;
+  };
+}, [obras]);
 
-        while (true) {
-          try {
-            const res = await fetch(`https://trajeto-cultural-backend.onrender.com/acervo/get_lista?page=${page}&per_page=100`);
-            const data = await res.json();
-            if (!data || data.length === 0) break;
-
-            allObras = [...allObras, ...data];
-            if (cancel) break;
-
-            page++;
-          } catch (err) {
-            console.error("Erro ao carregar obras:", err);
-            break;
-          }
-        }
-
-        if (!cancel) {
-          setObras(allObras);
-          localStorage.setItem("obras", JSON.stringify(allObras)); // ✅ salva no navegador
-          setLoading(false);
-        }
-      };
-
-      fetchData();
-      return () => { cancel = true; };
-  }, [obras]);
 
 
 

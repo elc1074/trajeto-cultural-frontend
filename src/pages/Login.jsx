@@ -76,6 +76,12 @@ const Login = () => {
 
       <div className="z-10 -mt-12 flex flex-1 flex-col items-center justify-start">
         <div className="relative flex h-full w-full flex-col items-center rounded-3xl bg-white p-6 shadow-md">
+          <button
+          className="mb-4 flex self-start text-sm text-purple-600"
+          onClick={() => navigate("/")}
+        >
+          ← Voltar para tela inicial
+        </button>
           <h2 className="mb-6 self-start text-2xl font-semibold text-purple-600">
             Login
           </h2>

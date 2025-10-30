@@ -17,6 +17,8 @@ const PontoArtistico = () => {
   const [alreadyCollected, setAlreadyCollected] = useState(false);
   const [userLocation, setUserLocation] = useState(null);
   const [distance, setDistance] = useState(null);
+  const [comentario, setComentario] = useState(null);
+
 
   function getDistanceFromLatLonInMeters(lat1, lon1, lat2, lon2) {
       const R = 6371000;
@@ -32,26 +34,45 @@ const PontoArtistico = () => {
       return R * c;
   }
 
-  useEffect(() => {
-    if (obraId) {
-      fetch(
-        `https://trajeto-cultural-backend.onrender.com/acervo/get_obra/${obraId}`,
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setObra(data);
-            console.log("📍 Localização da obra:", {
-              latitude: data.latitude,
-              longitude: data.longitude,
-            });
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error("Erro ao carregar obra:", err);
-          setLoading(false);
+useEffect(() => {
+  if (obraId) {
+    fetch(
+      `https://trajeto-cultural-backend.onrender.com/acervo/get_obra/${obraId}`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setObra(data);
+        console.log("📍 Localização da obra:", {
+          latitude: data.latitude,
+          longitude: data.longitude,
         });
-    }
-  }, [obraId]);
+        setLoading(false);
+
+if (data.thumbnail) {
+  fetch("https://trajeto-cultural-backend.onrender.com/analise/gemini", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ image_url: data.thumbnail }),
+  })
+    .then((res) => res.json())
+    .then((json) => {
+      if (json.resposta) {
+        setComentario(json.resposta);
+      }
+    })
+    .catch((err) => {
+      console.error("Erro ao gerar comentário:", err);
+    });
+}
+
+      })
+      .catch((err) => {
+        console.error("Erro ao carregar obra:", err);
+        setLoading(false);
+      });
+  }
+}, [obraId]);
+
 
 useEffect(() => {
   if (obra && user) {
@@ -215,6 +236,11 @@ useEffect(() => {
         <p className="mb-6 text-center text-sm text-purple-600">
           {obra.author_name}
         </p>
+      {comentario && (
+          <p className="mt-4 text-center text-sm text-gray-600 italic">
+            💬 {comentario}
+          </p>
+        )}
         <Button
           className={`py-3 px-6 rounded-full text-base w-full max-w-xs ${
             alreadyCollected

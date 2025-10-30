@@ -1,39 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Imports adicionais */
-/*@import "tw-animate-css";
-@import "leaflet/dist/leaflet.css";*/
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: linear-gradient(to bottom, #7e22ce, #a855f7);
-  color: white;
-  font-family: sans-serif;
-}
-
-:root {
-  --radius: 0.625rem;
-  --color-background: #ffffff;
-  --color-foreground: #0f0f0f;
-  --color-border: #e5e7eb; /* gray-200 */
-  --color-input: #f3f4f6; /* gray-100 */
-  --color-ring: #6366f1; /* indigo-500 */
-}
-
-.dark {
-  --color-background: #0f0f0f;
-  --color-foreground: #f9fafb;
-  --color-border: #1f2937; /* gray-800 */
-  --color-input: #374151; /* gray-700 */
-  --color-ring: #3b82f6; /* blue-500 */
-}
+@import "./styles/globals.css";
+@import "./styles/themes.css";
 
 @layer base {
   * {
@@ -109,7 +75,7 @@ body {
 
 .map-line-2 {
   animation: drawMapLine2 3s infinite ease-in-out;
-  animation-delay: 1s; 
+  animation-delay: 1s;
 }
 
 .map-loader {

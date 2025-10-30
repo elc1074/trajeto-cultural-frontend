@@ -3,6 +3,16 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        primary: "var(--color-primary)",
+        accent: "var(--color-accent)",
+        background: "var(--color-bg)",
+        text: "var(--color-text)",
+      },
+      borderRadius: {
+        xl: "1rem",
+        full: "9999px",
+      },
       keyframes: {
         "fade-in": {
           "0%": { opacity: 0, transform: "translateY(10px)" },

@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background e texto usam as variáveis de tema */
+body {
+  background-color: linear-gradient(to bottom, #7e22ce, var(--color-primary));
+  color: var(--color-bg);
+  font-family: sans-serif;
+}

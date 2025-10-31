@@ -107,7 +107,6 @@ const Perfil = () => {
             </div>
         ) : (
             <>
-                {/* Imagem "/profile.png" removida */}
                 
                 <div className="mb-8 mt-6 flex h-40 w-40 items-center justify-center">
                     <img
@@ -131,9 +130,10 @@ const Perfil = () => {
                 <h3 className="mb-2 text-xl font-bold text-purple-600">
                   {user?.nome || "Nome do Usuário"}
                 </h3>
-                {/* "Curso de Graduação" removido */}
                 
-                <div className="mb-10 flex h-6 w-full max-w-xs items-center justify-start rounded-full bg-purple-200">
+                <h4 className="mt-4 mb-2 text-lg font-semibold text-gray-700 w-full max-w-xs text-center">Nível</h4>
+
+                <div className="mb-4 flex h-6 w-full max-w-xs items-center justify-start rounded-full bg-purple-200">
                   <div
                     className="flex h-6 items-center justify-center rounded-full bg-purple-500 px-4 text-sm font-semibold text-white"
                     style={{ width: "75%" }}
@@ -142,7 +142,8 @@ const Perfil = () => {
                   </div>
                 </div>
                 
-                {/* Conquistas (movidas para cima) */}
+                <h4 className="mb-4 text-lg font-semibold text-gray-700 w-full max-w-xs text-center">Conquistas</h4>
+
                 <div className="mb-12 flex w-full justify-center gap-4">
                   {conquistas.slice(-3).map((c) => (
                     <div
@@ -157,7 +158,6 @@ const Perfil = () => {
                   )}
                 </div>
 
-                {/* Seletor de Temas (movido para baixo das conquistas) */}
                 <div className="w-full max-w-xs mb-10 p-4 bg-white rounded-xl shadow-md border border-gray-200">
                     <h4 className="flex items-center text-md font-semibold text-gray-700 mb-3">
                         <Palette className="w-4 h-4 mr-2 text-purple-500" />
@@ -177,7 +177,6 @@ const Perfil = () => {
                         ))}
                     </div>
                 </div>
-                {/* Fim Seletor de Temas */}
 
                 <Button
                   className="w-full max-w-xs rounded-full bg-orange-500 py-3 text-base font-bold text-white shadow-md hover:bg-orange-600"

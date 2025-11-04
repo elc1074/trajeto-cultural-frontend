@@ -4,20 +4,24 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "purple");
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    if (storedUser) setUser(JSON.parse(storedUser));
   }, []);
 
-  const login = (userData) => {
-      localStorage.removeItem("pontosVisitados");
-      localStorage.setItem("user", JSON.stringify(userData));
-      setUser(userData);
-  };
+  useEffect(() => {
+    document.documentElement.className = "";
+    document.documentElement.classList.add(`theme-${theme}`);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
+  const login = (userData) => {
+    localStorage.removeItem("pontosVisitados");
+    localStorage.setItem("user", JSON.stringify(userData));
+    setUser(userData);
+  };
 
   const logout = () => {
     localStorage.removeItem("user");
@@ -25,7 +29,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout, setUser }}>
+    <UserContext.Provider value={{ user, setUser, theme, setTheme, login, logout }}>
       {children}
     </UserContext.Provider>
   );

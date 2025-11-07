@@ -26,18 +26,18 @@ const userIcon = L.icon({
 });
 
 const MapLoadingAnimation = () => (
-  <div className="flex flex-col items-center justify-center h-full w-full bg-white p-10">
+  <div className="flex flex-col items-center justify-center h-full w-full bg-bg p-10">
     <div className="flex space-x-2">
       <div
-        className="h-4 w-4 bg-purple-600 rounded-full animate-pulse"
+        className="h-4 w-4 bg-primary rounded-full animate-pulse"
         style={{ animationDelay: "0s", animationDuration: "1.5s" }}
       ></div>
       <div
-        className="h-4 w-4 bg-purple-600 rounded-full animate-pulse"
+        className="h-4 w-4 bg-primary rounded-full animate-pulse"
         style={{ animationDelay: "0.3s", animationDuration: "1.5s" }}
       ></div>
       <div
-        className="h-4 w-4 bg-purple-600 rounded-full animate-pulse"
+        className="h-4 w-4 bg-primary rounded-full animate-pulse"
         style={{ animationDelay: "0.6s", animationDuration: "1.5s" }}
       ></div>
     </div>
@@ -142,15 +142,15 @@ const HomePage = () => {
   }, [obras]);
 
   return (
-    <div className="relative flex h-screen flex-col bg-purple-600">
+    <div className="relative flex h-screen flex-col bg-primary">
       <Header section="Trajeto Cultural" />
 
-      <div className="h-full w-full overflow-hidden rounded-t-2xl bg-white relative">
+      <div className="h-full w-full overflow-hidden rounded-t-2xl bg-bg relative">
         {loading ? (
           <MapLoadingAnimation />
         ) : (
           <>
-            <div className="absolute top-4 right-4 z-[1000] bg-white rounded-full shadow-md flex items-center space-x-2 px-4 py-2 cursor-pointer hover:bg-gray-100 transition">
+            <div className="absolute top-4 right-4 z-[1000] bg-bg rounded-full shadow-md flex items-center space-x-2 px-4 py-2 cursor-pointer hover:bg-gray-100 transition">
               <button
                 onClick={() =>
                   setMapType((prev) =>

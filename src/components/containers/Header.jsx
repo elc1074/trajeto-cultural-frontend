@@ -1,7 +1,7 @@
 export function Header({section}) {
   return (
     <div className="overflow-hidden">
-      <header className="relative w-full bg-purple-500 py-3">
+      <header className="relative w-full bg-primary py-3">
         <img
           className="absolute -top-4 left-0 w-[130px]"
           src="/images/header-1.png"
@@ -12,7 +12,7 @@ export function Header({section}) {
           src="/images/header-2.png"
           alt=""
         />
-        <h1 className="py-2 text-center text-2xl font-bold text-white">
+        <h1 className="py-2 text-center text-2xl font-bold text-bg">
           {section}
         </h1>
       </header>

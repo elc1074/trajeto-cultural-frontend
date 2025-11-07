@@ -157,18 +157,18 @@ useEffect(() => {
 
     if (loading) {
       return (
-        <div className="flex flex-col items-center justify-center h-screen w-full bg-white p-10">
+        <div className="flex flex-col items-center justify-center h-screen w-full bg-bg p-10">
           <div className="flex space-x-2 mb-6">
             <div
-              className="h-4 w-4 bg-purple-600 rounded-full animate-pulse"
+              className="h-4 w-4 bg-primary rounded-full animate-pulse"
               style={{ animationDelay: "0s", animationDuration: "1.5s" }}
             ></div>
             <div
-              className="h-4 w-4 bg-purple-600 rounded-full animate-pulse"
+              className="h-4 w-4 bg-primary rounded-full animate-pulse"
               style={{ animationDelay: "0.3s", animationDuration: "1.5s" }}
             ></div>
             <div
-              className="h-4 w-4 bg-purple-600 rounded-full animate-pulse"
+              className="h-4 w-4 bg-primary rounded-full animate-pulse"
               style={{ animationDelay: "0.6s", animationDuration: "1.5s" }}
             ></div>
           </div>
@@ -182,7 +182,7 @@ useEffect(() => {
 
   if (!obra) {
     return (
-      <div className="flex h-screen items-center justify-center bg-purple-600 text-white">
+      <div className="flex h-screen items-center justify-center bg-primary text-bg">
         Não foi possível carregar a obra.
       </div>
     );
@@ -221,7 +221,7 @@ useEffect(() => {
 
 
   return (
-    <div className="relative flex h-screen flex-col bg-purple-600">
+    <div className="relative flex h-screen flex-col bg-primary">
       <Header section="Ponto Artístico" />
       <div className="flex flex-1 flex-col items-center overflow-y-auto rounded-t-3xl bg-gray-100 px-6 py-6">
         <img
@@ -229,11 +229,11 @@ useEffect(() => {
           alt={obra.title}
           className="mb-6 w-64 max-w-full rounded-md shadow-lg"
         />
-        <h2 className="text-center text-xl font-bold text-orange-500">
+        <h2 className="text-center text-xl font-bold text-accent">
           {obra.title}
         </h2>
 
-        <p className="mb-6 text-center text-sm text-purple-600">
+        <p className="mb-6 text-center text-sm text-primary">
           {obra.author_name}
         </p>
       {comentario && (
@@ -246,7 +246,7 @@ useEffect(() => {
             alreadyCollected
               ? "bg-gray-500 text-gray-200 cursor-not-allowed"
               : canAdd
-              ? "bg-orange-500 text-white hover:bg-orange-600"
+              ? "bg-accent text-bg hover:bg-accent"
               : "bg-gray-400 text-gray-200 cursor-not-allowed"
           }`}
           onClick={handleAddObraVisitada}

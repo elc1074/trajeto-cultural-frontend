@@ -64,7 +64,7 @@ const Login = () => {
 
   return (
     <div className="flex h-screen flex-col bg-gray-100">
-      <div className="relative flex h-1/3 flex-col items-start justify-center bg-purple-600 pl-6 text-white">
+      <div className="relative flex h-1/3 flex-col items-start justify-center bg-primary pl-6 text-bg">
         <img
           className="absolute -left-6 -top-4 w-[90px]"
           src="/images/login-header.png"
@@ -75,14 +75,14 @@ const Login = () => {
       </div>
 
       <div className="z-10 -mt-12 flex flex-1 flex-col items-center justify-start">
-        <div className="relative flex h-full w-full flex-col items-center rounded-3xl bg-white p-6 shadow-md">
+        <div className="relative flex h-full w-full flex-col items-center rounded-3xl bg-bg p-6 shadow-md">
           <button
-            className="mb-4 flex self-start text-sm text-purple-600"
+            className="mb-4 flex self-start text-sm text-primary"
             onClick={() => navigate("/")}
           >
             ← Voltar para tela inicial
           </button>
-          <h2 className="mb-6 self-start text-2xl font-semibold text-purple-600">
+          <h2 className="mb-6 self-start text-2xl font-semibold text-primary">
             Login
           </h2>
           <img
@@ -108,7 +108,7 @@ const Login = () => {
 
           <div className="relative w-full">
             <Button
-              className="flex w-full items-center justify-center rounded-full bg-purple-600 py-3 text-base text-white hover:bg-purple-700"
+              className="flex w-full items-center justify-center rounded-full bg-primary py-3 text-base text-bg hover:bg-primary"
               onClick={handleLogin}
               disabled={loading}
             >
@@ -119,7 +119,7 @@ const Login = () => {
             {loading && (
               <div className="absolute bottom-0 left-0 right-0 h-1 overflow-hidden rounded-full bg-gray-200">
                 <div
-                  className="h-1 bg-orange-500 transition-all duration-300 ease-linear"
+                  className="h-1 bg-accent transition-all duration-300 ease-linear"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -134,7 +134,7 @@ const Login = () => {
             Não tem uma conta?{" "}
             <span
               onClick={() => navigate("/register")}
-              className="cursor-pointer font-semibold text-purple-600"
+              className="cursor-pointer font-semibold text-primary"
             >
               Cadastre-se
             </span>

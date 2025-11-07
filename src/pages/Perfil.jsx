@@ -7,11 +7,11 @@ import { UserContext } from "../context/UserContext";
 import { Palette } from "lucide-react";
 
 const Loader = ({ message }) => (
-    <div className="flex flex-col items-center justify-center h-full w-full bg-white p-10 min-h-64 rounded-xl">
+    <div className="flex flex-col items-center justify-center h-full w-full bg-bg p-10 min-h-64 rounded-xl">
       <div className="flex space-x-2 mb-6">
-        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
-        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
-        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0.6s', animationDuration: '1.5s' }}></div>
+        <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
+        <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
+        <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.6s', animationDuration: '1.5s' }}></div>
       </div>
       <p className="mt-6 text-xl font-bold text-gray-800">
         {message}
@@ -20,7 +20,7 @@ const Loader = ({ message }) => (
 );
 
 const themeColors = [
-    { name: 'Roxo', value: 'purple', class: 'bg-purple-500' },
+    { name: 'Roxo', value: 'purple', class: 'bg-primary' },
     { name: 'Azul', value: 'blue', class: 'bg-blue-500' },
     { name: 'Verde', value: 'green', class: 'bg-green-500' },
 ];
@@ -96,7 +96,7 @@ const Perfil = () => {
 
 
   return (
-    <div className="relative flex h-screen flex-col bg-purple-600">
+    <div className="relative flex h-screen flex-col bg-primary">
       <Header section="Perfil" />
 
       <div className="relative flex flex-1 flex-col items-center overflow-y-auto rounded-t-3xl bg-gray-100 px-6 pt-10 pb-40">
@@ -115,7 +115,7 @@ const Perfil = () => {
                         "https://placehold.co/128x128/D8BFD8/000000?text=Avatar"
                       }
                       alt="Avatar do Usuário"
-                      className="z-10 h-40 w-40 cursor-pointer rounded-full border-4 border-white object-cover shadow-lg"
+                      className="z-10 h-40 w-40 cursor-pointer rounded-full border-4 border-bg object-cover shadow-lg"
                       onClick={handleAvatarClick}
                     />
                     <input
@@ -127,7 +127,7 @@ const Perfil = () => {
                     />
                 </div>
 
-                <h3 className="mb-2 text-xl font-bold text-purple-600">
+                <h3 className="mb-2 text-xl font-bold text-primary">
                   {user?.nome || "Nome do Usuário"}
                 </h3>
                 
@@ -135,7 +135,7 @@ const Perfil = () => {
 
                 <div className="mb-4 flex h-6 w-full max-w-xs items-center justify-start rounded-full bg-purple-200">
                   <div
-                    className="flex h-6 items-center justify-center rounded-full bg-purple-500 px-4 text-sm font-semibold text-white"
+                    className="flex h-6 items-center justify-center rounded-full bg-primary px-4 text-sm font-semibold text-bg"
                     style={{ width: "75%" }}
                   >
                     3752 / 5000
@@ -148,7 +148,7 @@ const Perfil = () => {
                   {conquistas.slice(-3).map((c) => (
                     <div
                       key={c.id}
-                      className="flex items-center justify-center rounded-xl bg-purple-400 px-4 py-3 text-white shadow-md text-center text-sm"
+                      className="flex items-center justify-center rounded-xl bg-primary px-4 py-3 text-bg shadow-md text-center text-sm"
                     >
                       {c.nome_conquista}
                     </div>
@@ -158,9 +158,9 @@ const Perfil = () => {
                   )}
                 </div>
 
-                <div className="w-full max-w-xs mb-10 p-4 bg-white rounded-xl shadow-md border border-gray-200">
+                <div className="w-full max-w-xs mb-10 p-4 bg-bg rounded-xl shadow-md border border-gray-200">
                     <h4 className="flex items-center text-md font-semibold text-gray-700 mb-3">
-                        <Palette className="w-4 h-4 mr-2 text-purple-500" />
+                        <Palette className="w-4 h-4 mr-2 text-primary" />
                         Mudar Tema
                     </h4>
                     <div className="flex justify-between space-x-2">
@@ -168,8 +168,8 @@ const Perfil = () => {
                             <button
                                 key={color.value}
                                 onClick={() => setTheme(color.value)}
-                                className={`flex-1 py-2 rounded-lg font-medium text-xs text-white transition-all transform hover:scale-105 ${color.class} ${
-                                    theme === color.value ? 'ring-4 ring-offset-2 ring-purple-400' : ''
+                                className={`flex-1 py-2 rounded-lg font-medium text-xs text-bg transition-all transform hover:scale-105 ${color.class} ${
+                                    theme === color.value ? 'ring-4 ring-offset-2 ring-primary' : ''
                                 }`}
                             >
                                 {color.name}
@@ -179,7 +179,7 @@ const Perfil = () => {
                 </div>
 
                 <Button
-                  className="w-full max-w-xs rounded-full bg-orange-500 py-3 text-base font-bold text-white shadow-md hover:bg-orange-600"
+                  className="w-full max-w-xs rounded-full bg-accent py-3 text-base font-bold text-bg shadow-md hover:bg-accent"
                   onClick={logout}
                 >
                   Sair

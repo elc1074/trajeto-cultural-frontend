@@ -9,11 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 
 const Loader = ({ message }) => (
-    <div className="flex flex-col items-center justify-center h-full w-full bg-white p-10 min-h-64">
+    <div className="flex flex-col items-center justify-center h-full w-full bg-bg p-10 min-h-64">
       <div className="flex space-x-2 mb-6">
-        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
-        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
-        <div className="h-4 w-4 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: '0.6s', animationDuration: '1.5s' }}></div>
+        <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
+        <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
+        <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.6s', animationDuration: '1.5s' }}></div>
       </div>
       <p className="mt-6 text-xl font-bold text-gray-800">
         {message}
@@ -117,9 +117,9 @@ useEffect(() => {
 
 
   return (
-    <div className="min-h-screen flex flex-col bg-purple-600 relative">
+    <div className="min-h-screen flex flex-col bg-bg relative">
       <Header section="Pontos Visitados" />
-      <div className="flex-1 bg-white rounded-t-3xl flex flex-col items-center px-6 py-6 overflow-y-auto z-10">
+      <div className="flex-1 bg-bg rounded-t-3xl flex flex-col items-center px-6 py-6 overflow-y-auto z-10">
         <div className="w-full max-w-xl">
 
           
@@ -138,7 +138,7 @@ useEffect(() => {
 
             ))
           ) : (
-            <p className="text-gray-500 text-center mt-8">
+            <p className="text-text text-center mt-8">
               Você ainda não visitou nenhum ponto.
             </p>
           )}

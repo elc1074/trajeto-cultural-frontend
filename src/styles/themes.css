@@ -1,13 +1,9 @@
-/*TODO: Growth the variations number for color each theme
-    Swap the colors on pages for this variables relative each theme
-*/
 :root {
   --color-primary: #a855f7;
   --color-accent: #f97316;
   --color-bg: #f5f5f5;
   --color-text: #1f2937;
 }
-/*TODO: Fake themes, update for correct themes*/
 .theme-2 {
   --color-primary: #3b82f6;
   --color-accent: #10b981;

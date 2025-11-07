@@ -35,27 +35,27 @@ const Start = () => {
           alt="map"
         />
         <img className="z-10 w-[200px]" src="/favicon.png" alt="favicon" />
-        <p className="z-10 text-2xl text-purple-400">Bem-vindo ao</p>
-        <h1 className="z-10 pb-8 text-3xl font-bold text-purple-600">
+        <p className="z-10 text-2xl text-primary">Bem-vindo ao</p>
+        <h1 className="z-10 pb-8 text-3xl font-bold text-primary">
           Trajeto Cultural
         </h1>
 
         <Button
-          className="z-10 flex w-[200px] items-center justify-center rounded-full bg-orange-500 py-3 text-lg text-white hover:bg-orange-400"
+          className="z-10 flex w-[200px] items-center justify-center rounded-full bg-accent py-3 text-lg text-bg hover:opacity-60"
           onClick={() => navigate("/register")}
         >
           Cadastre - se
         </Button>
 
         <Button
-          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-orange-500 py-3 text-lg text-white hover:bg-orange-400"
+          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-accent py-3 text-lg text-bg hover:opacity-60"
           onClick={() => navigate("/login")}
         >
           Login
         </Button>
 
         <Button
-          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-white py-3 text-lg text-gray-700 hover:bg-purple-200 hover:text-white"
+          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-primary py-3 text-lg text-bg hover:bg-bg hover:opacity-60 hover:text-bg"
           onClick={handleAcessarSemLogin}
         >
           Acessar sem login

@@ -1,13 +1,19 @@
 import {
   Home,
-  Trophy,
   MapPin,
   Star,
+  Trophy,
   User,
+  LogIn
 } from "lucide-react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 export function BottomNav() {
+  const user = useContext(UserContext);
+  const isLoggedIn = !!user && !!user?.user?.user_id; 
+
   const navigate = useNavigate();
 
   return (
@@ -45,7 +51,7 @@ export function BottomNav() {
           className="text-white text-2xl hover:opacity-80"
           onClick={() => navigate("/perfil")}
         >
-          <User />
+          { isLoggedIn ? <User /> : <LogIn /> }
         </button>
       </nav>
     </div>

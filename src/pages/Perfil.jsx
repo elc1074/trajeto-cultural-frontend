@@ -72,7 +72,7 @@ const Perfil = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate("/");
+      navigate("/login");
     }
   }, [user, navigate]);
 

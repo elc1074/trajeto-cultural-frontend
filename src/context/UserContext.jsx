@@ -7,9 +7,22 @@ export const UserProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "purple");
 
   useEffect(() => {
+  try {
     const storedUser = localStorage.getItem("user");
-    if (storedUser) setUser(JSON.parse(storedUser));
-  }, []);
+    if (storedUser) {
+      const parsed = JSON.parse(storedUser);
+      
+      if (parsed && parsed.id) {
+        setUser(parsed);
+      } else {
+        localStorage.removeItem("user");
+      }
+    }
+  } catch {
+    localStorage.removeItem("user");
+  }
+}, []);
+
 
   useEffect(() => {
     const root = document.documentElement;
@@ -22,7 +35,7 @@ export const UserProvider = ({ children }) => {
       root.classList.add("theme-3");
     }
     localStorage.setItem("theme", theme);
-  }, [theme]);
+}, [theme]);
 
 
   const login = (userData) => {

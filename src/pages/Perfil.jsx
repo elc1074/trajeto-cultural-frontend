@@ -20,7 +20,7 @@ const Loader = ({ message }) => (
 );
 
 const themeColors = [
-    { name: 'Roxo', value: 'purple', class: 'bg-primary' },
+    { name: 'Roxo', value: 'purple', class: 'bg-purple-500' },
     { name: 'Azul', value: 'blue', class: 'bg-blue-500' },
     { name: 'Verde', value: 'green', class: 'bg-green-500' },
 ];
@@ -133,7 +133,7 @@ const Perfil = () => {
                 
                 <h4 className="mt-4 mb-2 text-lg font-semibold text-gray-700 w-full max-w-xs text-center">Nível</h4>
 
-                <div className="mb-4 flex h-6 w-full max-w-xs items-center justify-start rounded-full bg-purple-200">
+                <div className="mb-4 flex h-6 w-full max-w-xs items-center justify-start rounded-full bg-zinc-300">
                   <div
                     className="flex h-6 items-center justify-center rounded-full bg-primary px-4 text-sm font-semibold text-white"
                     style={{ width: "75%" }}

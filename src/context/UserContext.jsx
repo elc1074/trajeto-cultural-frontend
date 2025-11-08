@@ -12,10 +12,18 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    document.documentElement.className = "";
-    document.documentElement.classList.add(`theme-${theme}`);
+    const root = document.documentElement;
+
+    root.classList.remove("theme-2", "theme-3");
+    
+    if (theme === "blue") {
+      root.classList.add("theme-2");
+    } else if (theme === "green") {
+      root.classList.add("theme-3");
+    }
     localStorage.setItem("theme", theme);
   }, [theme]);
+
 
   const login = (userData) => {
     localStorage.removeItem("pontosVisitados");

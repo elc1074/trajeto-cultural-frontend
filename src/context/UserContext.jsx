@@ -29,7 +29,7 @@ export const UserProvider = ({ children }) => {
 
     root.classList.remove("theme-2", "theme-3");
     
-    if (theme === "blue") {
+    if (theme === "red") {
       root.classList.add("theme-2");
     } else if (theme === "green") {
       root.classList.add("theme-3");

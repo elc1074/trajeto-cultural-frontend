@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useContext } from "react";
+import { UserContext } from "@/context/UserContext";
 
 const Start = () => {
+  const { theme } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleAcessarSemLogin = () => {
@@ -16,22 +19,22 @@ const Start = () => {
       <div className="relative flex h-screen flex-col items-center justify-center bg-neutral-100">
         <img
           className="absolute -right-14 -top-16 w-[250px]"
-          src="/images/start-1.png"
+          src={`/themes/${theme}/start-1.png`}
           alt="map"
         />
         <img
           className="absolute -left-16 top-20 w-[250px]"
-          src="/images/start-2.png"
+          src={`/themes/${theme}/start-2.png`}
           alt="map"
         />
         <img
           className="absolute -right-10 top-1/2 w-[150px]"
-          src="/images/start-3.png"
+          src={`/themes/${theme}/start-3.png`}
           alt="map"
         />
         <img
           className="absolute -left-16 bottom-4 w-[250px]"
-          src="/images/start-4.png"
+          src={`/themes/${theme}/start-4.png`}
           alt="map"
         />
         <img className="z-10 w-[200px]" src="/favicon.png" alt="favicon" />

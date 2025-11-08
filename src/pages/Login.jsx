@@ -4,6 +4,8 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 
 const Login = () => {
+  const { theme } = useContext(UserContext);
+
   const navigate = useNavigate();
   const { login } = useContext(UserContext);
 
@@ -67,7 +69,7 @@ const Login = () => {
       <div className="relative flex h-1/3 flex-col items-start justify-center bg-primary pl-6 text-white">
         <img
           className="absolute -left-6 -top-4 w-[90px]"
-          src="/images/login-header.png"
+          src={`/themes/${theme}/login-header.png`}
           alt="ink"
         />
         <h1 className="text-4xl font-bold">Olá !</h1>
@@ -87,7 +89,7 @@ const Login = () => {
           </h2>
           <img
             className="absolute -top-20 right-6 w-[140px]"
-            src="/images/login-pin.png"
+            src={`/themes/${theme}/login-pin.png`}
             alt=""
           />
 

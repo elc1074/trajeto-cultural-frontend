@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
+import { UserContext } from "@/context/UserContext";
 
 const Register = () => {
+  const { theme } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const [nome, setNome] = useState("");
@@ -67,7 +70,7 @@ const Register = () => {
     <div className="relative flex h-screen flex-col items-center justify-center bg-primary">
       <img
         className="absolute -left-6 -top-8 w-[150px]"
-        src="/images/login-header.png"
+        src={`/themes/${theme}/login-header.png`}
         alt="ink"
       />
       <div className="mt-32 h-full w-full rounded-3xl bg-gray-100 p-8 shadow-lg">

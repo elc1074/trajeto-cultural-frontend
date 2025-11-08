@@ -4,7 +4,7 @@ import { BottomNav } from "@/components/containers/BottomNav";
 import { Button } from "@/components/ui/button.jsx";
 import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../context/UserContext";
-import { Palette } from "lucide-react";
+import { Palette, LogOut } from "lucide-react";
 
 const Loader = ({ message }) => (
     <div className="flex flex-col items-center justify-center h-full w-full bg-white p-10 min-h-64 rounded-xl">
@@ -21,7 +21,7 @@ const Loader = ({ message }) => (
 
 const themeColors = [
     { name: 'Roxo', value: 'purple', class: 'color-purple' },
-    { name: 'Vermelho', value: 'blue', class: 'color-red' },
+    { name: 'Vermelho', value: 'red', class: 'color-red' },
     { name: 'Verde', value: 'green', class: 'color-green' },
 ];
 
@@ -179,10 +179,10 @@ const Perfil = () => {
                 </div>
 
                 <Button
-                  className="w-full max-w-xs rounded-full bg-accent py-3 text-base font-bold text-white shadow-md hover:bg-accent"
+                  className="flex justify-center items-center w-full max-w-xs rounded-full bg-accent py-3 text-base font-bold text-white shadow-md hover:bg-accent"
                   onClick={logout}
                 >
-                  Sair
+                  Sair <LogOut />
                 </Button>
             </>
         )}

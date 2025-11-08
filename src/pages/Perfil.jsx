@@ -20,9 +20,9 @@ const Loader = ({ message }) => (
 );
 
 const themeColors = [
-    { name: 'Roxo', value: 'purple', class: 'bg-purple-500' },
-    { name: 'Azul', value: 'blue', class: 'bg-blue-500' },
-    { name: 'Verde', value: 'green', class: 'bg-green-500' },
+    { name: 'Roxo', value: 'purple', class: 'color-purple' },
+    { name: 'Vermelho', value: 'blue', class: 'color-red' },
+    { name: 'Verde', value: 'green', class: 'color-green' },
 ];
 
 

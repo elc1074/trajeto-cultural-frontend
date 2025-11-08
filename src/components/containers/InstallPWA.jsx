@@ -32,7 +32,7 @@ export default function InstallPWA() {
   if (!showInstallButton) return null;
 
   return (
-    <div className="fixed bottom-5 left-1/2 z-[9999] flex w-[90%] -translate-x-1/2 animate-fade-in flex-col items-center gap-3 rounded-xl bg-neutral-100 px-4 py-3 text-bg shadow-lg sm:w-auto sm:flex-row sm:gap-4 sm:px-5 sm:py-4">
+    <div className="fixed bottom-5 left-1/2 z-[9999] flex w-[90%] -translate-x-1/2 animate-fade-in flex-col items-center gap-3 rounded-xl bg-neutral-100 px-4 py-3 text-white shadow-lg sm:w-auto sm:flex-row sm:gap-4 sm:px-5 sm:py-4">
       {/* botão de fechar */}
       <button
         onClick={handleClose}
@@ -48,7 +48,7 @@ export default function InstallPWA() {
 
       <button
         onClick={handleInstallClick}
-        className="mr-3 w-full rounded-lg bg-accent px-4 py-2 font-semibold text-bg transition hover:bg-accent sm:w-auto"
+        className="mr-3 w-full rounded-lg bg-accent px-4 py-2 font-semibold text-white transition hover:bg-accent sm:w-auto"
       >
         Instalar
       </button>

@@ -41,21 +41,21 @@ const Start = () => {
         </h1>
 
         <Button
-          className="z-10 flex w-[200px] items-center justify-center rounded-full bg-accent py-3 text-lg text-bg hover:opacity-60"
+          className="z-10 flex w-[200px] items-center justify-center rounded-full bg-accent py-3 text-lg text-white hover:opacity-60"
           onClick={() => navigate("/register")}
         >
           Cadastre - se
         </Button>
 
         <Button
-          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-accent py-3 text-lg text-bg hover:opacity-60"
+          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-accent py-3 text-lg text-white hover:opacity-60"
           onClick={() => navigate("/login")}
         >
           Login
         </Button>
 
         <Button
-          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-primary py-3 text-lg text-bg hover:bg-bg hover:opacity-60 hover:text-bg"
+          className="z-10 mt-4 flex w-[200px] items-center justify-center rounded-full bg-primary py-3 text-lg text-white hover:bg-white hover:opacity-60 hover:text-primary"
           onClick={handleAcessarSemLogin}
         >
           Acessar sem login

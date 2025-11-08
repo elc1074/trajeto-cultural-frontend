@@ -6,9 +6,10 @@
     @apply outline-none;
     border-color: var(--color-border);
   }
+
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--color-bg);
+    color: var(--color-text);
   }
 }
 
@@ -76,7 +77,4 @@
 .map-line-2 {
   animation: drawMapLine2 3s infinite ease-in-out;
   animation-delay: 1s;
-}
-
-.map-loader {
 }

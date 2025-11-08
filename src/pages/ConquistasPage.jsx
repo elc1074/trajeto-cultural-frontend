@@ -5,7 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 const Loader = ({ message }) => (
-  <div className="flex flex-col items-center justify-center h-full w-full bg-bg p-10 min-h-64">
+  <div className="flex flex-col items-center justify-center h-full w-full bg-white p-10 min-h-64">
     <div className="flex space-x-2 mb-6">
       <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
       <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
@@ -57,10 +57,10 @@ useEffect(() => {
 
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-bg">
+    <div className="relative flex min-h-screen flex-col bg-white">
       <Header section="Conquistas" />
 
-      <div className="flex-1 overflow-y-auto rounded-t-3xl bg-bg p-6">
+      <div className="flex-1 overflow-y-auto rounded-t-3xl bg-white p-6">
         <h1 className="mb-6 text-2xl font-bold text-gray-800">Conquistas</h1>
 
         {loading ? (

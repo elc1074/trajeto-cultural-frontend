@@ -7,7 +7,7 @@ import { UserContext } from "../context/UserContext";
 import { Palette } from "lucide-react";
 
 const Loader = ({ message }) => (
-    <div className="flex flex-col items-center justify-center h-full w-full bg-bg p-10 min-h-64 rounded-xl">
+    <div className="flex flex-col items-center justify-center h-full w-full bg-white p-10 min-h-64 rounded-xl">
       <div className="flex space-x-2 mb-6">
         <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
         <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
@@ -135,7 +135,7 @@ const Perfil = () => {
 
                 <div className="mb-4 flex h-6 w-full max-w-xs items-center justify-start rounded-full bg-purple-200">
                   <div
-                    className="flex h-6 items-center justify-center rounded-full bg-primary px-4 text-sm font-semibold text-bg"
+                    className="flex h-6 items-center justify-center rounded-full bg-primary px-4 text-sm font-semibold text-white"
                     style={{ width: "75%" }}
                   >
                     3752 / 5000
@@ -148,7 +148,7 @@ const Perfil = () => {
                   {conquistas.slice(-3).map((c) => (
                     <div
                       key={c.id}
-                      className="flex items-center justify-center rounded-xl bg-primary px-4 py-3 text-bg shadow-md text-center text-sm"
+                      className="flex items-center justify-center rounded-xl bg-primary px-4 py-3 text-white shadow-md text-center text-sm"
                     >
                       {c.nome_conquista}
                     </div>
@@ -158,7 +158,7 @@ const Perfil = () => {
                   )}
                 </div>
 
-                <div className="w-full max-w-xs mb-10 p-4 bg-bg rounded-xl shadow-md border border-gray-200">
+                <div className="w-full max-w-xs mb-10 p-4 bg-white rounded-xl shadow-md border border-gray-200">
                     <h4 className="flex items-center text-md font-semibold text-gray-700 mb-3">
                         <Palette className="w-4 h-4 mr-2 text-primary" />
                         Mudar Tema
@@ -168,7 +168,7 @@ const Perfil = () => {
                             <button
                                 key={color.value}
                                 onClick={() => setTheme(color.value)}
-                                className={`flex-1 py-2 rounded-lg font-medium text-xs text-bg transition-all transform hover:scale-105 ${color.class} ${
+                                className={`flex-1 py-2 rounded-lg font-medium text-xs text-white transition-all transform hover:scale-105 ${color.class} ${
                                     theme === color.value ? 'ring-4 ring-offset-2 ring-primary' : ''
                                 }`}
                             >
@@ -179,7 +179,7 @@ const Perfil = () => {
                 </div>
 
                 <Button
-                  className="w-full max-w-xs rounded-full bg-accent py-3 text-base font-bold text-bg shadow-md hover:bg-accent"
+                  className="w-full max-w-xs rounded-full bg-accent py-3 text-base font-bold text-white shadow-md hover:bg-accent"
                   onClick={logout}
                 >
                   Sair

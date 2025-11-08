@@ -6,8 +6,8 @@ export default {
       colors: {
         primary: "var(--color-primary)",
         accent: "var(--color-accent)",
-        background: "var(--color-bg)",
-        text: "var(--color-text)",
+        background: "var(--color-bgcolor)",
+        text: "var(--color-textcolor)",
       },
       borderRadius: {
         xl: "1rem",

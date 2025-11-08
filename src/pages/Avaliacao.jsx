@@ -11,9 +11,9 @@ export function Avaliacao() {
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-bg">
+    <div className="relative flex min-h-screen flex-col bg-white">
       <Header section="Feedback" />
-      <div className="flex flex-1 flex-col items-center justify-start rounded-t-3xl bg-bg p-6 pt-16">
+      <div className="flex flex-1 flex-col items-center justify-start rounded-t-3xl bg-white p-6 pt-16">
         
         <div className="flex flex-col items-center w-full max-w-md gap-6 text-center">
             
@@ -29,7 +29,7 @@ export function Avaliacao() {
             <button
               type="button"
               onClick={handleRedirect}
-              className="w-full bg-primary text-bg py-4 px-4 rounded-xl font-bold text-lg shadow-lg hover:bg-primary transition-colors flex items-center justify-center gap-2 transform active:scale-95"
+              className="w-full bg-primary text-white py-4 px-4 rounded-xl font-bold text-lg shadow-lg hover:bg-primary transition-colors flex items-center justify-center gap-2 transform active:scale-95"
             >
               Avaliar no Formulário
               <ExternalLink className="h-5 w-5" />

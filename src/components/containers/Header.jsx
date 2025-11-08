@@ -12,7 +12,7 @@ export function Header({section}) {
           src="/images/header-2.png"
           alt=""
         />
-        <h1 className="py-2 text-center text-2xl font-bold text-bg">
+        <h1 className="py-2 text-center text-2xl font-bold text-white">
           {section}
         </h1>
       </header>

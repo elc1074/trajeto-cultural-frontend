@@ -64,7 +64,7 @@ const Login = () => {
 
   return (
     <div className="flex h-screen flex-col bg-gray-100">
-      <div className="relative flex h-1/3 flex-col items-start justify-center bg-primary pl-6 text-bg">
+      <div className="relative flex h-1/3 flex-col items-start justify-center bg-primary pl-6 text-white">
         <img
           className="absolute -left-6 -top-4 w-[90px]"
           src="/images/login-header.png"
@@ -75,7 +75,7 @@ const Login = () => {
       </div>
 
       <div className="z-10 -mt-12 flex flex-1 flex-col items-center justify-start">
-        <div className="relative flex h-full w-full flex-col items-center rounded-3xl bg-bg p-6 shadow-md">
+        <div className="relative flex h-full w-full flex-col items-center rounded-3xl bg-white p-6 shadow-md">
           <button
             className="mb-4 flex self-start text-sm text-primary"
             onClick={() => navigate("/")}
@@ -108,7 +108,7 @@ const Login = () => {
 
           <div className="relative w-full">
             <Button
-              className="flex w-full items-center justify-center rounded-full bg-primary py-3 text-base text-bg hover:bg-primary"
+              className="flex w-full items-center justify-center rounded-full bg-primary py-3 text-base text-white hover:bg-primary"
               onClick={handleLogin}
               disabled={loading}
             >

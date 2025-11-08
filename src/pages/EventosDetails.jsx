@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button.jsx";
 import { Calendar, Filter } from "lucide-react";
 
 const Loader = ({ message }) => (
-    <div className="flex flex-col items-center justify-center h-full w-full bg-bg p-10 min-h-64">
+    <div className="flex flex-col items-center justify-center h-full w-full bg-white p-10 min-h-64">
       <div className="flex space-x-2 mb-6">
         <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '1.5s' }}></div>
         <div className="h-4 w-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }}></div>
@@ -31,7 +31,7 @@ const EventoItem = ({ title, date, price }) => {
           </div>
         </div>
       </div>
-      <Button className="rounded-full bg-accent px-4 py-2 text-xs text-bg hover:bg-accent">
+      <Button className="rounded-full bg-accent px-4 py-2 text-xs text-white hover:bg-accent">
         Saiba mais
       </Button>
     </div>
@@ -71,7 +71,7 @@ const EventosDetails = () => {
   return (
     <div className="relative flex min-h-screen flex-col bg-primary">
       <Header section="Eventos" />
-      <div className="z-10 flex flex-1 flex-col items-center overflow-y-auto rounded-t-3xl bg-bg px-6 py-6">
+      <div className="z-10 flex flex-1 flex-col items-center overflow-y-auto rounded-t-3xl bg-white px-6 py-6">
         <div className="mb-4 flex w-full max-w-xl items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-800">Eventos</h2>
           

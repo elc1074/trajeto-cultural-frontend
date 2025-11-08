@@ -88,33 +88,33 @@ const Register = () => {
             placeholder="Nome"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
-            className="rounded-full border border-gray-300 bg-bg p-3 text-primary placeholder-primary opacity-60 focus:outline-none"
+            className="rounded-full border border-gray-300 bg-white p-3 text-primary placeholder-primary opacity-60 focus:outline-none"
           />
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="rounded-full border border-gray-300 bg-bg p-3 text-primary placeholder-primary opacity-60 focus:outline-none"
+            className="rounded-full border border-gray-300 bg-white p-3 text-primary placeholder-primary opacity-60 focus:outline-none"
           />
           <input
             type="password"
             placeholder="Senha"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
-            className="rounded-full border border-gray-300 bg-bg p-3 text-primary placeholder-primary opacity-60 focus:outline-none"
+            className="rounded-full border border-gray-300 bg-white p-3 text-primary placeholder-primary opacity-60 focus:outline-none"
           />
           <input
             type="password"
             placeholder="Confirmar senha"
             value={confirmarSenha}
             onChange={(e) => setConfirmarSenha(e.target.value)}
-            className="rounded-full border border-gray-300 bg-bg p-3 text-primary placeholder-primary opacity-60 focus:outline-none"
+            className="rounded-full border border-gray-300 bg-white p-3 text-primary placeholder-primary opacity-60 focus:outline-none"
           />
 
           <div className="relative w-full">
             <Button
-              className="mt-2 flex w-full items-center justify-center rounded-full bg-primary py-3 text-lg text-bg hover:bg-primary"
+              className="mt-2 flex w-full items-center justify-center rounded-full bg-primary py-3 text-lg text-white hover:bg-primary"
               onClick={handleRegister}
               disabled={loading}
             >

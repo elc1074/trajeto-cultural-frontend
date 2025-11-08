@@ -157,7 +157,7 @@ useEffect(() => {
 
     if (loading) {
       return (
-        <div className="flex flex-col items-center justify-center h-screen w-full bg-bg p-10">
+        <div className="flex flex-col items-center justify-center h-screen w-full bg-white p-10">
           <div className="flex space-x-2 mb-6">
             <div
               className="h-4 w-4 bg-primary rounded-full animate-pulse"
@@ -182,7 +182,7 @@ useEffect(() => {
 
   if (!obra) {
     return (
-      <div className="flex h-screen items-center justify-center bg-primary text-bg">
+      <div className="flex h-screen items-center justify-center bg-primary text-white">
         Não foi possível carregar a obra.
       </div>
     );
@@ -246,7 +246,7 @@ useEffect(() => {
             alreadyCollected
               ? "bg-gray-500 text-gray-200 cursor-not-allowed"
               : canAdd
-              ? "bg-accent text-bg hover:bg-accent"
+              ? "bg-accent text-white hover:bg-accent"
               : "bg-gray-400 text-gray-200 cursor-not-allowed"
           }`}
           onClick={handleAddObraVisitada}

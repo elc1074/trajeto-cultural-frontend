@@ -15,20 +15,19 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  // efeito para animar a barra
   useEffect(() => {
     let interval;
     if (loading) {
       setProgress(0);
       interval = setInterval(() => {
         setProgress((prev) => {
-          if (prev < 90) return prev + 10; // vai até 90%
+          if (prev < 90) return prev + 10; 
           return prev;
         });
       }, 300);
     } else {
       setProgress(100);
-      const timeout = setTimeout(() => setProgress(0), 500); // reseta depois de completar
+      const timeout = setTimeout(() => setProgress(0), 500); 
       return () => clearTimeout(timeout);
     }
     return () => clearInterval(interval);
@@ -61,8 +60,6 @@ const Login = () => {
       setLoading(false);
     }
   };
-
-
 
   return (
     <div className="flex h-screen flex-col bg-gray-100">
@@ -117,7 +114,6 @@ const Login = () => {
               Entrar
             </Button>
 
-            {/* Barra de progresso */}
             {loading && (
               <div className="absolute bottom-0 left-0 right-0 h-1 overflow-hidden rounded-full bg-gray-200">
                 <div

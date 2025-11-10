@@ -37,7 +37,11 @@ const Start = () => {
           src={`/themes/${theme}/start-4.png`}
           alt="map"
         />
-        <img className="z-10 w-[200px]" src="/favicon.png" alt="favicon" />
+        <img
+          className="z-10 w-[200px]"
+          src={`/themes/${theme}/logo-${theme}.png`}
+          alt={`${theme} logo`}
+        />
         <p className="z-10 text-2xl text-primary">Bem-vindo ao</p>
         <h1 className="z-10 pb-8 text-3xl font-bold text-primary">
           Trajeto Cultural
